@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border: none;
+}
+
+html {
+    background-color: #222;
+    color: #fff;
+    font-family: 'Acme', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* filter: invert(1); */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+html body header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+}
+
+html body header h1 {
+    font-size: 37px;
+}
+
+html body main {
+    display: flex;
+    flex-direction: row;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 95%;
+    position: relative;
+}
+
+html body main .infos {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    position: absolute;
+    /* right: 1000px; */
+    /* height: 450px;
+    width: 950px; */
+    max-width: 100%;
+    z-index: 99;
+}
+
+html body main .infos .jogadores {
+    display: flex;
+    position: absolute;
+}
+
+html body main .infos .jogadores div {
+    margin: 20px 10px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    transition: 0.5s;
+}
+
+html body main .infos .jogadores .jogadorU span {
+    color: #FF7f00;
+    font-size: 110%;
+}
+
+html body main .infos .jogadores .jogadorD span {
+    color: #0ff;
+    font-size: 110%;
+}
+
+html body main .infos .reload {
+    display: flex;
+    align-self: flex-end;
+}
+
+html body main .boxgame {
+    background-color: #fff;
+    width: 100%;
+    max-width: 520px;
+    max-height: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+html body main .boxgame div {
+    background-color: #222;
+    width: 33%;
+    height: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+html body main .boxgame .tabuleiro div {
+    background-color: #fff;
+    width: 87%;
+    height: 87%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+html body main .boxgame .tabuleiro .modific {
+    display: none;
+    cursor: default;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 600%;
+    background-color: rgba(0, 0, 0, 0.40);
+    border-radius: 15px;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+}
+
+html body main .boxgame .tabuleiro div div {
+    background-color: #222;
+    width: 32%;
+    height: 32%;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+html body main .boxgame .tabuleiro div div:hover {
+    background-color: #444;
+}
+
+html body main .boxgame .tabuleiro div div:active {
+    background-color: #777;
+}
+
+html body footer {
+    justify-content: center;
+    height: 70px;
+    margin-top: 10px;
+}
+
+html body footer .assi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 25px;
+    height: 45px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: #400070;
+    transition: 0.2s;
+}
+
+html body footer .assi:hover {
+    /* background-color: #80e; */
+    filter: brightness(1.4);
+}
+
+@media screen and (min-width: 941px) {
+    html body main .infos .jogadores {
+        flex-direction: column;
+        left: -470px;
+        top: -250px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    html body main .infos {
+        align-items: center;
+    }
+
+    html body main .infos .jogadores {
+        flex-direction: row;
+        font-size: 80%;
+        top: -360px;
+        width: auto;
+        white-space: nowrap;
+    }
+
+    html body main .infos .reload {
+        align-self: center;
+        position: absolute;
+        top: 0;
+    }
+
+    html body main {
+        margin-top: 40px;
+    }
+
+    html body main .boxgame .tabuleiro .modific {
+        font-size: 350%;
+    }
+
+    html body main .boxgame .tabuleiro div div {
+        font-size: 120%;
+    }
+}
+
+/* Editando o switch alert 2 */
+.swal2-show {
+    font-size: 30px;
+}
+
+.swal2-height-auto {
+    min-height: 100% !important;
+}
+
+.swal2-html-container {
+    color: #fff !important;
+}

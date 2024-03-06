@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br" id="html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Matheus Luz">
+    <title>Jogo da Velha: Ultimate</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="iconjv.png" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Jogo da Velha: Ultimate</h1>
+    </header>
+    <main>
+        <section class="infos">
+            <div class="jogadores">
+                <div class="jogadorU" style="background-color: #444;">Jogador 1 - <span>X</span></div>
+                <div class="jogadorD">Jogador 2 - <span>O</span></div>
+            </div>
+            <div class="reload" style="display: none;">Recomeçar</div>
+        </section>
+        <div class="boxgame">
+            <div class="tabuleiro">
+                <div class="modific" id="campoUm"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="a1"></div>
+                    <div onclick="jogada(this)" data-pos="b1"></div>
+                    <div onclick="jogada(this)" data-pos="c1"></div>
+                    <div onclick="jogada(this)" data-pos="a2"></div>
+                    <div onclick="jogada(this)" data-pos="b2"></div>
+                    <div onclick="jogada(this)" data-pos="c2"></div>
+                    <div onclick="jogada(this)" data-pos="a3"></div>
+                    <div onclick="jogada(this)" data-pos="b3"></div>
+                    <div onclick="jogada(this)" data-pos="c3"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoDo"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="d1"></div>
+                    <div onclick="jogada(this)" data-pos="e1"></div>
+                    <div onclick="jogada(this)" data-pos="f1"></div>
+                    <div onclick="jogada(this)" data-pos="d2"></div>
+                    <div onclick="jogada(this)" data-pos="e2"></div>
+                    <div onclick="jogada(this)" data-pos="f2"></div>
+                    <div onclick="jogada(this)" data-pos="d3"></div>
+                    <div onclick="jogada(this)" data-pos="e3"></div>
+                    <div onclick="jogada(this)" data-pos="f3"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoTr"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="g1"></div>
+                    <div onclick="jogada(this)" data-pos="h1"></div>
+                    <div onclick="jogada(this)" data-pos="i1"></div>
+                    <div onclick="jogada(this)" data-pos="g2"></div>
+                    <div onclick="jogada(this)" data-pos="h2"></div>
+                    <div onclick="jogada(this)" data-pos="i2"></div>
+                    <div onclick="jogada(this)" data-pos="g3"></div>
+                    <div onclick="jogada(this)" data-pos="h3"></div>
+                    <div onclick="jogada(this)" data-pos="i3"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoQu"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="a4"></div>
+                    <div onclick="jogada(this)" data-pos="b4"></div>
+                    <div onclick="jogada(this)" data-pos="c4"></div>
+                    <div onclick="jogada(this)" data-pos="a5"></div>
+                    <div onclick="jogada(this)" data-pos="b5"></div>
+                    <div onclick="jogada(this)" data-pos="c5"></div>
+                    <div onclick="jogada(this)" data-pos="a6"></div>
+                    <div onclick="jogada(this)" data-pos="b6"></div>
+                    <div onclick="jogada(this)" data-pos="c6"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoCi"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="d4"></div>
+                    <div onclick="jogada(this)" data-pos="e4"></div>
+                    <div onclick="jogada(this)" data-pos="f4"></div>
+                    <div onclick="jogada(this)" data-pos="d5"></div>
+                    <div onclick="jogada(this)" data-pos="e5"></div>
+                    <div onclick="jogada(this)" data-pos="f5"></div>
+                    <div onclick="jogada(this)" data-pos="d6"></div>
+                    <div onclick="jogada(this)" data-pos="e6"></div>
+                    <div onclick="jogada(this)" data-pos="f6"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoSe"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="g4"></div>
+                    <div onclick="jogada(this)" data-pos="h4"></div>
+                    <div onclick="jogada(this)" data-pos="i4"></div>
+                    <div onclick="jogada(this)" data-pos="g5"></div>
+                    <div onclick="jogada(this)" data-pos="h5"></div>
+                    <div onclick="jogada(this)" data-pos="i5"></div>
+                    <div onclick="jogada(this)" data-pos="g6"></div>
+                    <div onclick="jogada(this)" data-pos="h6"></div>
+                    <div onclick="jogada(this)" data-pos="i6"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoSt"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="a7"></div>
+                    <div onclick="jogada(this)" data-pos="b7"></div>
+                    <div onclick="jogada(this)" data-pos="c7"></div>
+                    <div onclick="jogada(this)" data-pos="a8"></div>
+                    <div onclick="jogada(this)" data-pos="b8"></div>
+                    <div onclick="jogada(this)" data-pos="c8"></div>
+                    <div onclick="jogada(this)" data-pos="a9"></div>
+                    <div onclick="jogada(this)" data-pos="b9"></div>
+                    <div onclick="jogada(this)" data-pos="c9"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoOi"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="d7"></div>
+                    <div onclick="jogada(this)" data-pos="e7"></div>
+                    <div onclick="jogada(this)" data-pos="f7"></div>
+                    <div onclick="jogada(this)" data-pos="d8"></div>
+                    <div onclick="jogada(this)" data-pos="e8"></div>
+                    <div onclick="jogada(this)" data-pos="f8"></div>
+                    <div onclick="jogada(this)" data-pos="d9"></div>
+                    <div onclick="jogada(this)" data-pos="e9"></div>
+                    <div onclick="jogada(this)" data-pos="f9"></div>
+                </div>
+            </div>
+            <div class="tabuleiro">
+                <div class="modific" id="campoNo"></div>
+                <div>
+                    <div onclick="jogada(this)" data-pos="g7"></div>
+                    <div onclick="jogada(this)" data-pos="h7"></div>
+                    <div onclick="jogada(this)" data-pos="i7"></div>
+                    <div onclick="jogada(this)" data-pos="g8"></div>
+                    <div onclick="jogada(this)" data-pos="h8"></div>
+                    <div onclick="jogada(this)" data-pos="i8"></div>
+                    <div onclick="jogada(this)" data-pos="g9"></div>
+                    <div onclick="jogada(this)" data-pos="h9"></div>
+                    <div onclick="jogada(this)" data-pos="i9"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <a class="assi" href="https://github.com/Mathluz" target="_blank">Github/MathLuz</a>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js" type="text/javascript"></script>
+</body>
+
+</html>
