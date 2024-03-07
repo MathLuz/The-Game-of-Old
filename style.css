@@ -1,3 +1,7 @@
+:root{
+    --background: #181e24;
+    --color: #fff; /*letras e linhas*/
+}
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +10,8 @@
 }
 
 html {
-    background-color: #222;
-    color: #fff;
+    background-color: var(--background);
+    color: var(--color);
     font-family: 'Acme', sans-serif;
     display: flex;
     flex-direction: column;
@@ -91,7 +95,7 @@ html body main .infos .reload {
 }
 
 html body main .boxgame {
-    background-color: #fff;
+    background-color: var(--color);
     width: 100%;
     max-width: 520px;
     max-height: 100%;
@@ -104,7 +108,7 @@ html body main .boxgame {
 }
 
 html body main .boxgame div {
-    background-color: #222;
+    background-color: var(--background);
     width: 33%;
     height: 33%;
     display: flex;
@@ -114,7 +118,7 @@ html body main .boxgame div {
 }
 
 html body main .boxgame .tabuleiro div {
-    background-color: #fff;
+    background-color: var(--color);
     width: 87%;
     height: 87%;
     flex-direction: row;
@@ -138,7 +142,7 @@ html body main .boxgame .tabuleiro .modific {
 }
 
 html body main .boxgame .tabuleiro div div {
-    background-color: #222;
+    background-color: var(--background);
     width: 32%;
     height: 32%;
     text-align: center;
@@ -167,7 +171,7 @@ html body footer .assi {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: var(--color);
     font-size: 25px;
     height: 45px;
     width: 200px;
@@ -232,5 +236,5 @@ html body footer .assi:hover {
 }
 
 .swal2-html-container {
-    color: #fff !important;
+    color: var(--color) !important;
 }
