@@ -186,6 +186,7 @@ html body footer .assi:hover {
         flex-direction: column;
         left: -470px;
         top: -250px;
+
     }
 }
 
@@ -196,8 +197,8 @@ html body footer .assi:hover {
 
     html body main .infos .jogadores {
         flex-direction: row;
-        font-size: 80%;
-        top: -360px;
+        font-size: 90%;
+        top: -35vh;
         width: auto;
         white-space: nowrap;
     }
@@ -217,7 +218,7 @@ html body footer .assi:hover {
     }
 
     html body main .boxgame .tabuleiro div div {
-        font-size: 120%;
+        font-size: 90%;
     }
 }
 
