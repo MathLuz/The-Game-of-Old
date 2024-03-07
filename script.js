@@ -89,10 +89,10 @@ function modificacoes(elemento) {
     let jogadorU = document.getElementsByClassName('jogadorU')[0];
     let jogadorD = document.getElementsByClassName('jogadorD')[0];
     if (vez == 'O') {
-        jogadorU.style.backgroundColor = '#444';
+        jogadorU.style.backgroundColor = '#ffffff33';
         jogadorD.style.backgroundColor = '';
     } else {
-        jogadorD.style.backgroundColor = '#444';
+        jogadorD.style.backgroundColor = '#ffffff33';
         jogadorU.style.backgroundColor = '';
     }
     // Coloca cor no que jogou
