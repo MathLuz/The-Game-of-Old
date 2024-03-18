@@ -1,7 +1,11 @@
-:root{
-    --background: #181e24;
-    --color: #fff; /*letras e linhas*/
+:root {
+    --background: #1f1f22;
+    /* --background: #333; */
+    --color: #fff;
+    --corJU: #ff7f00;
+    --corJU: #0ff;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +26,7 @@ html {
 }
 
 body {
+    background: radial-gradient(var(--background) 60%, rgba(0, 0, 0, 0.5));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,8 +41,8 @@ html body header {
     justify-content: space-around;
     align-items: flex-end;
     width: 100%;
-    height: 80px;
-    margin-top: 10px;
+    height: 100px;
+    /* margin-top: 10px; */
 }
 
 html body header h1 {
@@ -80,12 +85,12 @@ html body main .infos .jogadores div {
 }
 
 html body main .infos .jogadores .jogadorU span {
-    color: #FF7f00;
+    color: var(--corJU);
     font-size: 110%;
 }
 
 html body main .infos .jogadores .jogadorD span {
-    color: #0ff;
+    color: var(--corJD);
     font-size: 110%;
 }
 
@@ -134,7 +139,7 @@ html body main .boxgame .tabuleiro .modific {
     justify-content: center;
     position: absolute;
     font-size: 600%;
-    background-color: rgba(0, 0, 0, 0.40);
+    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     z-index: 99;
     width: 100%;
@@ -171,7 +176,7 @@ html body footer .assi {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--color);
+    color: #fff;
     font-size: 25px;
     height: 45px;
     width: 200px;
@@ -181,7 +186,6 @@ html body footer .assi {
 }
 
 html body footer .assi:hover {
-    /* background-color: #80e; */
     filter: brightness(1.4);
 }
 
@@ -190,18 +194,27 @@ html body footer .assi:hover {
         flex-direction: column;
         left: -470px;
         top: -250px;
-
     }
 }
 
 @media screen and (max-width: 940px) {
+    html body {
+        background: radial-gradient(ellipse 150% 70% at center, var(--background) 55%, rgba(0, 0, 0, 0.8));
+    }
+    html body header{
+        height: 60px;
+    }
+    html body header h1{
+        font-size: 30px;
+    }
+
     html body main .infos {
         align-items: center;
     }
 
     html body main .infos .jogadores {
         flex-direction: row;
-        font-size: 90%;
+        font-size: 80%;
         top: -35vh;
         width: auto;
         white-space: nowrap;

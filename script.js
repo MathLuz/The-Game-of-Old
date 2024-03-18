@@ -1,31 +1,18 @@
-/*
-// cores em dark mode
+// cores originais
 var corJU = '#ff7f00';
 var corJD = '#0ff';
-var fundo = '#222';
+var fundo = '#1f1f22';
 var linhas = '#fff';
 var neutra = '#400070';
 
-// cor em white mode "não oficial"
-var corJU = '#f00';
-var corJD = '#0f0';
-var fundo = '#ddd';
-var linhas = '#000';
-var neutra = '#00f';
-*/
-
 var vez = 'X';
-
-var corJU = '#ff7f00';
-var corJD = '#0ff';
-
+// var escolhaTema = document.getElementById("opcoesTemas");
+var escolhaTema = "ori";
 var tabelaWin = '';
 var color = '';
 var jaVenceu = false;
+var root = document.documentElement;
 var classOri = document.getElementsByClassName('modific');
-var fundo = document.getElementById('html');
-var linhas = document.getElementsByClassName('boxgame')[0];
-var fundoLinhas = document.getElementsByClassName('tabuleiro')[0];
 var houses = document.querySelectorAll('.tabuleiro div div');
 var win = [
     document.getElementById('campoUm'),
@@ -52,7 +39,8 @@ var tabuleiro = [
     ['', '', '', '', '', '', '', '', '']
 ];
 var cheio = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-// Elemento é a tag clicada
+
+corTema();
 function jogada(elemento) {
 
     var conteudo = elemento.innerHTML;
@@ -75,8 +63,6 @@ function jogada(elemento) {
 
         velha();
 
-        //theme();
-
         vez == 'X' ? vez = 'O' : vez = 'X'; // Muda o jogador a cada jogada
     }
 }
@@ -88,11 +74,12 @@ function modificacoes(elemento) {
     // Mostra quem é o próximo
     let jogadorU = document.getElementsByClassName('jogadorU')[0];
     let jogadorD = document.getElementsByClassName('jogadorD')[0];
+    let corBorda = '#7f7f7f55';
     if (vez == 'O') {
-        jogadorU.style.backgroundColor = '#444';
+        jogadorU.style.backgroundColor = corBorda;
         jogadorD.style.backgroundColor = '';
     } else {
-        jogadorD.style.backgroundColor = '#444';
+        jogadorD.style.backgroundColor = corBorda;
         jogadorU.style.backgroundColor = '';
     }
     // Coloca cor no que jogou
@@ -330,7 +317,7 @@ function venceu() {
         width: 450,
         text: " É O VENCEDOR!!",
         color: vez == 'X' ? corJU : corJD,
-        background: "#333",
+        background: fundo,
         confirmButtonColor: vez == 'X' ? corJU : corJD,
         confirmButtonText: "GG",
         // timer: 6000,
@@ -360,28 +347,42 @@ function velha() {
             width: 450,
             title: "Deu Velha!!",
             text: "Empatou, joguem novamente",
-            color: "#80e",
-            background: "#333",
-            confirmButtonColor: "#80e",
+            color: linhas,
+            background: fundo,
+            confirmButtonColor: neutra,
             confirmButtonText: "GG",
             // timer: 6000,
             // showConfirmButton: false
         });
     }
 }
-/*
 // Mudar tema
-function theme() {
-    fundo.style.background = '#fff';
-    fundoLinhas.style.background = '#fff';
-    linhas.style.background = '#222';
+function corTema() {
+    if (escolhaTema == "ori") {
+        corJU = '#ff7f00';
+        corJD = '#0ff';
+        fundo = '#1f1f22';
+        linhas = '#fff';
+        neutra = '#400070';
+    }
+    if (escolhaTema == "white") {
+        corJU = '#ff7f00';
+        corJD = '#0079ff';
+        fundo = '#ddd';
+        linhas = '#222';
+        neutra = '#00f';
+    }
+
+    root.style.setProperty('--background', fundo);
+    root.style.setProperty('--color', linhas);
+    root.style.setProperty('--corJU', corJU);
+    root.style.setProperty('--corJD', corJD);
     houses.forEach(function (div) {
-        div.style.backgroundColor = '#fff';
-        if (div.innerHTML == "X") {
-            div.style.color = '#f00';
-        } else if (div.innerHTML == "O") {
-            div.style.color = '#0f0';
+        div.style.backgroundColor = fundo;
+        if (div.innerHTML === "X") {
+            div.style.color = corJU;
+        } else if (div.innerHTML === "O") {
+            div.style.color = corJD;
         }
     });
 }
-*/
