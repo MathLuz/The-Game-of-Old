@@ -207,7 +207,7 @@ html body footer .assi:hover {
 
 @media screen and (max-width: 940px) {
     html body {
-        background: radial-gradient(ellipse 150% 65% at center, var(--background) 50%, var(--gradient));
+        background: radial-gradient(ellipse 150% 70% at center, var(--background) 55%, var(--gradient));
     }
 
     html body header {
