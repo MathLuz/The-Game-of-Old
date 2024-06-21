@@ -1,31 +1,12 @@
-// cores originais
-var corJU = '#ff7f00';
-var corJD = '#0ff';
-var fundo = '#1f1f22';
-var linhas = '#fff';
-var neutra = '#400070';
-
-var vez = 'X';
-// var escolhaTema = document.getElementById("opcoesTemas");
-var escolhaTema = "ori";
-var tabelaWin = '';
-var color = '';
-var jaVenceu = false;
-var root = document.documentElement;
-var classOri = document.getElementsByClassName('modific');
-var houses = document.querySelectorAll('.tabuleiro div div');
-var win = [
-    document.getElementById('campoUm'),
-    document.getElementById('campoDo'),
-    document.getElementById('campoTr'),
-    document.getElementById('campoQu'),
-    document.getElementById('campoCi'),
-    document.getElementById('campoSe'),
-    document.getElementById('campoSt'),
-    document.getElementById('campoOi'),
-    document.getElementById('campoNo'),
-];
-var tabuleiro = [
+let vez = 'X';
+let tabelaWin = '';
+let color = '';
+let jaVenceu = false;
+const root = document.documentElement;
+const classOri = document.getElementsByClassName('modific');
+const houses = document.querySelectorAll('.tabuleiro div div');
+const win = document.querySelectorAll('.campo');
+const tabuleiro = [
     ['', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', ''],
@@ -38,13 +19,23 @@ var tabuleiro = [
     ['', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', '']
 ];
-var cheio = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let cheio = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+// Declaração de cores
+let corJU;
+let corJD;
+let fundo;
+let linhas;
+let neutra;
+let gradient;
+let escolhaTema = "white";
+// let escolhaTema = document.getElementById("opcoesTemas");
 
 corTema();
 function jogada(elemento) {
 
-    var conteudo = elemento.innerHTML;
-    if (conteudo == 'X' || conteudo == 'O') {
+    let conteudo = elemento.innerHTML;
+    if (conteudo === 'X' || conteudo === 'O') {
         // Tag inválida, nada acontece
     } else {
         elemento.innerHTML = vez;
@@ -63,19 +54,19 @@ function jogada(elemento) {
 
         velha();
 
-        vez == 'X' ? vez = 'O' : vez = 'X'; // Muda o jogador a cada jogada
+        vez === 'X' ? vez = 'O' : vez = 'X'; // Muda o jogador a cada jogada
     }
 }
 // Muda a cor e mostra o próximo a jogar
 function modificacoes(elemento) {
     // Mudar a cor conforme de quem é a vez
-    color = vez == 'X' ? corJU : corJD;
+    color = vez === 'X' ? corJU : corJD;
 
     // Mostra quem é o próximo
     let jogadorU = document.getElementsByClassName('jogadorU')[0];
     let jogadorD = document.getElementsByClassName('jogadorD')[0];
     let corBorda = '#7f7f7f55';
-    if (vez == 'O') {
+    if (vez === 'O') {
         jogadorU.style.backgroundColor = corBorda;
         jogadorD.style.backgroundColor = '';
     } else {
@@ -103,34 +94,34 @@ function atualizar(elemento) {
 function vencedor() {
     for (let i = 0; i < 9; i++) {
         // Verificar verticais
-        if (tabuleiro[i][1] != '' && tabuleiro[i][0] == vez && tabuleiro[i][1] == vez && tabuleiro[i][2] == vez) {
+        if (tabuleiro[i][1] != '' && tabuleiro[i][0] === vez && tabuleiro[i][1] === vez && tabuleiro[i][2] === vez) {
             tabelaWin = (i >= 0 && i <= 2) ? win[0] : (i >= 3 && i <= 5) ? win[3] : win[6];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
-        if (tabuleiro[i][4] != '' && tabuleiro[i][3] == vez && tabuleiro[i][4] == vez && tabuleiro[i][5] == vez) {
+        if (tabuleiro[i][4] != '' && tabuleiro[i][3] === vez && tabuleiro[i][4] === vez && tabuleiro[i][5] === vez) {
             tabelaWin = (i >= 0 && i <= 2) ? win[1] : (i >= 3 && i <= 5) ? win[4] : win[7];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
-        if (tabuleiro[i][7] != '' && tabuleiro[i][6] == vez && tabuleiro[i][7] == vez && tabuleiro[i][8] == vez) {
+        if (tabuleiro[i][7] != '' && tabuleiro[i][6] === vez && tabuleiro[i][7] === vez && tabuleiro[i][8] === vez) {
             tabelaWin = (i >= 0 && i <= 2) ? win[2] : (i >= 3 && i <= 5) ? win[5] : win[8];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
 
         // Verificar horizontais
-        if (tabuleiro[1][i] != '' & tabuleiro[0][i] == vez & tabuleiro[1][i] == vez & tabuleiro[2][i] == vez) {
+        if (tabuleiro[1][i] != '' & tabuleiro[0][i] === vez & tabuleiro[1][i] === vez & tabuleiro[2][i] === vez) {
             tabelaWin = (i >= 0 && i <= 2) ? win[0] : (i >= 3 && i <= 5) ? win[1] : win[2];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
-        if (tabuleiro[4][i] != '' & tabuleiro[3][i] == vez & tabuleiro[4][i] == vez & tabuleiro[5][i] == vez) {
+        if (tabuleiro[4][i] != '' & tabuleiro[3][i] === vez & tabuleiro[4][i] === vez & tabuleiro[5][i] === vez) {
             tabelaWin = (i >= 0 && i <= 2) ? win[3] : (i >= 3 && i <= 5) ? win[4] : win[5];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
-        if (tabuleiro[7][i] != '' & tabuleiro[6][i] == vez & tabuleiro[7][i] == vez & tabuleiro[8][i] == vez) {
+        if (tabuleiro[7][i] != '' & tabuleiro[6][i] === vez & tabuleiro[7][i] === vez & tabuleiro[8][i] === vez) {
             tabelaWin = (i >= 0 && i <= 2) ? win[6] : (i >= 3 && i <= 5) ? win[7] : win[8];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
@@ -139,8 +130,8 @@ function vencedor() {
     // Vencedor diagonais
     for (let i = 1; i <= 7; i += 3) {
 
-        let j = i == 1 ? 4 : i == 4 ? 7 : 1;
-        let k = i == 1 ? 7 : i == 4 ? 1 : 4;
+        let j = i === 1 ? 4 : i === 4 ? 7 : 1;
+        let k = i === 1 ? 7 : i === 4 ? 1 : 4;
         let ia = i - 1;
         let id = i + 1;
         let ja = j - 1;
@@ -150,28 +141,28 @@ function vencedor() {
 
         if (
             // Verifica [1][1] / [4][4] / [7][7]
-            (tabuleiro[i][i] != '' && tabuleiro[ia][ia] == vez && tabuleiro[i][i] == vez && tabuleiro[id][id] == vez) ||
-            (tabuleiro[i][i] != '' && tabuleiro[id][ia] == vez && tabuleiro[i][i] == vez && tabuleiro[ia][id] == vez)
+            (tabuleiro[i][i] != '' && tabuleiro[ia][ia] === vez && tabuleiro[i][i] === vez && tabuleiro[id][id] === vez) ||
+            (tabuleiro[i][i] != '' && tabuleiro[id][ia] === vez && tabuleiro[i][i] === vez && tabuleiro[ia][id] === vez)
         ) {
-            tabelaWin = (i == 1) ? win[0] : (i == 4) ? win[4] : win[8];
+            tabelaWin = (i === 1) ? win[0] : (i === 4) ? win[4] : win[8];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
         if (
             // Verifica [1][4] / [4][7] / [7][1]
-            (tabuleiro[i][j] != '' && tabuleiro[ia][ja] == vez && tabuleiro[i][j] == vez && tabuleiro[id][jd] == vez) ||
-            (tabuleiro[i][j] != '' && tabuleiro[id][ja] == vez && tabuleiro[i][j] == vez && tabuleiro[ia][jd] == vez)
+            (tabuleiro[i][j] != '' && tabuleiro[ia][ja] === vez && tabuleiro[i][j] === vez && tabuleiro[id][jd] === vez) ||
+            (tabuleiro[i][j] != '' && tabuleiro[id][ja] === vez && tabuleiro[i][j] === vez && tabuleiro[ia][jd] === vez)
         ) {
-            tabelaWin = (i == 1) ? win[1] : (i == 4) ? win[5] : win[6];
+            tabelaWin = (i === 1) ? win[1] : (i === 4) ? win[5] : win[6];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
         if (
             // Verifica [1][7] / [4][1] / [7][4]
-            (tabuleiro[i][k] != '' && tabuleiro[ia][ka] == vez && tabuleiro[i][k] == vez && tabuleiro[id][kd] == vez) ||
-            (tabuleiro[i][k] != '' && tabuleiro[id][ka] == vez && tabuleiro[i][k] == vez && tabuleiro[ia][kd] == vez)
+            (tabuleiro[i][k] != '' && tabuleiro[ia][ka] === vez && tabuleiro[i][k] === vez && tabuleiro[id][kd] === vez) ||
+            (tabuleiro[i][k] != '' && tabuleiro[id][ka] === vez && tabuleiro[i][k] === vez && tabuleiro[ia][kd] === vez)
         ) {
-            tabelaWin = (i == 1) ? win[2] : (i == 4) ? win[3] : win[7];
+            tabelaWin = (i === 1) ? win[2] : (i === 4) ? win[3] : win[7];
             tabelaWin.innerHTML = vez;
             tabelaWin.style.cssText = 'display: flex; color:' + color;
         }
@@ -185,13 +176,13 @@ function block(elemento) {
     for (let i = 1; i <= 3; i++) {
         let j = i + 3;
         let k = i + 6;
-        if (uc == 'a' + i || uc == 'a' + j || uc == 'a' + k || uc == 'd' + i || uc == 'd' + j || uc == 'd' + k || uc == 'g' + i || uc == 'g' + j || uc == 'g' + k) {
+        if (uc === 'a' + i || uc === 'a' + j || uc === 'a' + k || uc === 'd' + i || uc === 'd' + j || uc === 'd' + k || uc === 'g' + i || uc === 'g' + j || uc === 'g' + k) {
             for (let i = 0; i <= 8; i++) { classOri[i].style.display = 'flex'; }
-            if (i == 1) {
+            if (i === 1) {
                 win[0].style.display = 'none';
                 veri = win[0].innerHTML;
                 ultCampo = 0;
-            } else if (i == 2) {
+            } else if (i === 2) {
                 win[3].style.display = 'none';
                 veri = win[3].innerHTML;
                 ultCampo = 1;
@@ -200,13 +191,13 @@ function block(elemento) {
                 veri = win[6].innerHTML;
                 ultCampo = 2;
             }
-        } else if (uc == 'b' + i || uc == 'b' + j || uc == 'b' + k || uc == 'e' + i || uc == 'e' + j || uc == 'e' + k || uc == 'h' + i || uc == 'h' + j || uc == 'h' + k) {
+        } else if (uc === 'b' + i || uc === 'b' + j || uc === 'b' + k || uc === 'e' + i || uc === 'e' + j || uc === 'e' + k || uc === 'h' + i || uc === 'h' + j || uc === 'h' + k) {
             for (let i = 0; i <= 8; i++) { classOri[i].style.display = 'flex'; }
-            if (i == 1) {
+            if (i === 1) {
                 win[1].style.display = 'none';
                 veri = win[1].innerHTML;
                 ultCampo = 3;
-            } else if (i == 2) {
+            } else if (i === 2) {
                 win[4].style.display = 'none';
                 veri = win[4].innerHTML;
                 ultCampo = 4;
@@ -215,13 +206,13 @@ function block(elemento) {
                 veri = win[7].innerHTML;
                 ultCampo = 5;
             }
-        } else if (uc == 'c' + i || uc == 'c' + j || uc == 'c' + k || uc == 'f' + i || uc == 'f' + j || uc == 'f' + k || uc == 'i' + i || uc == 'i' + j || uc == 'i' + k) {
+        } else if (uc === 'c' + i || uc === 'c' + j || uc === 'c' + k || uc === 'f' + i || uc === 'f' + j || uc === 'f' + k || uc === 'i' + i || uc === 'i' + j || uc === 'i' + k) {
             for (let i = 0; i <= 8; i++) { classOri[i].style.display = 'flex'; }
-            if (i == 1) {
+            if (i === 1) {
                 win[2].style.display = 'none';
                 veri = win[2].innerHTML;
                 ultCampo = 6;
-            } else if (i == 2) {
+            } else if (i === 2) {
                 win[5].style.display = 'none';
                 veri = win[5].innerHTML;
                 ultCampo = 7;
@@ -234,11 +225,11 @@ function block(elemento) {
     }
     for (let i = 0; i <= 8; i++) {
 
-        if (veri != '' || cheio[ultCampo] == 9) {
+        if (veri != '' || cheio[ultCampo] === 9) {
             classOri[i].style.display = 'none';
         }
 
-        if (classOri[i].innerHTML != '' || cheio[i] == 9) {
+        if (classOri[i].innerHTML != '' || cheio[i] === 9) {
             win[i].style.display = 'flex';
         }
     }
@@ -249,7 +240,7 @@ function winner() {
     for (let i = 0; i <= 6; i += 3) {
         let j = i + 1;
         let k = i + 2;
-        if (classOri[i].innerHTML != '' && classOri[i].innerHTML == vez && classOri[j].innerHTML == vez && classOri[k].innerHTML == vez) {
+        if (classOri[i].innerHTML != '' && classOri[i].innerHTML === vez && classOri[j].innerHTML === vez && classOri[k].innerHTML === vez) {
             venceu();
         }
     }
@@ -257,15 +248,15 @@ function winner() {
     for (let i = 0; i <= 2; i += 1) {
         let j = i + 3;
         let k = i + 6;
-        if (classOri[i].innerHTML != '' && classOri[i].innerHTML == vez && classOri[j].innerHTML == vez && classOri[k].innerHTML == vez) {
+        if (classOri[i].innerHTML != '' && classOri[i].innerHTML === vez && classOri[j].innerHTML === vez && classOri[k].innerHTML === vez) {
             venceu();
         }
     }
     // Diagonais
-    if (classOri[4].innerHTML != '' && classOri[0].innerHTML == vez && classOri[4].innerHTML == vez && classOri[8].innerHTML == vez) {
+    if (classOri[4].innerHTML != '' && classOri[0].innerHTML === vez && classOri[4].innerHTML === vez && classOri[8].innerHTML === vez) {
         venceu();
     }
-    if (classOri[4].innerHTML != '' && classOri[6].innerHTML == vez && classOri[4].innerHTML == vez && classOri[2].innerHTML == vez) {
+    if (classOri[4].innerHTML != '' && classOri[6].innerHTML === vez && classOri[4].innerHTML === vez && classOri[2].innerHTML === vez) {
         venceu();
     }
 }
@@ -316,9 +307,9 @@ function venceu() {
         title: vez,
         width: 450,
         text: " É O VENCEDOR!!",
-        color: vez == 'X' ? corJU : corJD,
-        background: fundo,
-        confirmButtonColor: vez == 'X' ? corJU : corJD,
+        color: vez === 'X' ? corJU : corJD,
+        background: fundo + "ee",
+        confirmButtonColor: vez === 'X' ? corJU : corJD,
         confirmButtonText: "GG",
         // timer: 6000,
         // showConfirmButton: false,
@@ -330,25 +321,25 @@ function venceu() {
 }
 // Função para contar as tags com a classe e display flex
 function velha() {
-    var contaFlex = document.getElementsByClassName('modific');
-    var contagem = 0;
+    let contaFlex = document.getElementsByClassName('modific');
+    let contagem = 0;
 
     // VErifica cada classe
     for (let i = 0; i < contaFlex.length; i++) {
         let estilo = window.getComputedStyle(contaFlex[i]);
         // Verifica se a class possui display flex
-        if (estilo.display == 'flex') { contagem++; }
+        if (estilo.display === 'flex') { contagem++; }
     }
 
     console.log('Campos Bloquados: ' + contagem);
 
-    if (contagem >= 9 && jaVenceu == false) {
+    if (contagem >= 9 && jaVenceu === false) {
         Swal.fire({
             width: 450,
             title: "Deu Velha!!",
             text: "Empatou, joguem novamente",
             color: linhas,
-            background: fundo,
+            background: fundo + "ee",
             confirmButtonColor: neutra,
             confirmButtonText: "GG",
             // timer: 6000,
@@ -358,26 +349,34 @@ function velha() {
 }
 // Mudar tema
 function corTema() {
-    if (escolhaTema == "ori") {
+
+    if (escolhaTema === "ori") {
         corJU = '#ff7f00';
         corJD = '#0ff';
         fundo = '#1f1f22';
         linhas = '#fff';
         neutra = '#400070';
+        gradient = '#000';
+        corBlock = '#0000007f';
     }
-    if (escolhaTema == "white") {
-        corJU = '#ff7f00';
-        corJD = '#0079ff';
-        fundo = '#ddd';
-        linhas = '#222';
-        neutra = '#00f';
+    if (escolhaTema === "white") {
+        corJU = '#ff3322';
+        corJD = '#50f';
+        fundo = '#fff';
+        linhas = '#333';
+        neutra = '#0b0';
+        gradient = '#aad';
+        corBlock = '#0000004c';
     }
 
-    root.style.setProperty('--background', fundo);
-    root.style.setProperty('--color', linhas);
     root.style.setProperty('--corJU', corJU);
     root.style.setProperty('--corJD', corJD);
-    houses.forEach(function (div) {
+    root.style.setProperty('--background', fundo);
+    root.style.setProperty('--color', linhas);
+    root.style.setProperty('--neutra', neutra);
+    root.style.setProperty('--gradient', gradient);
+    root.style.setProperty('--corBlock', corBlock);
+    houses.forEach((div) => {
         div.style.backgroundColor = fundo;
         if (div.innerHTML === "X") {
             div.style.color = corJU;

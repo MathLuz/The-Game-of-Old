@@ -1,0 +1,24 @@
+{
+  "background_color": "#181e24",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "The Game of Old - Mathluz",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "The Game of Old",
+  "start_url": "https://mathluz.github.io/The-Game-of-Old/",
+  "theme_color": "#FF7f00",
+  "icons": [
+    {
+      "src": "img/iconjv.png",
+      "type": "image/png",
+      "sizes": "745x746"
+    }
+  ],
+  "description": "O Jogo da Velha em outro nível, pense 9x mais",
+  "lang": "pt-br",
+  "categories": [
+    "entertainment",
+    "games"
+  ]
+}

@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Jacquard+12+Charted&display=swap');
+
+:root {
+    --background: #1f1f22;
+    /* --background: #333; */
+    --color: #fff;
+    --corJU: #ff7f00;
+    --corJU: #0ff;
+    --neutra: #400070;
+    --gradient: #000000;
+    --corBlock: #0000007f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    color: inherit;
+    list-style: none;
+    z-index: inherit;
+    text-decoration: none;
+  }
+
+html {
+    background-color: var(--background);
+    color: var(--color);
+    font-family: 'Acme', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: radial-gradient(ellipse 70% 150% at center, var(--background) 40%, var(--gradient));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+html body header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 100px;
+}
+
+html body header h1 {
+    font-size: 37px;
+}
+
+/* MAIN */
+
+
+/* ASSINATURA */
+html body footer {
+    justify-content: center;
+    height: 70px;
+    margin-top: 10px;
+}
+
+html body footer .assi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 25px;
+    height: 45px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: var(--neutra);
+    transition: 0.2s;
+}
+
+html body footer .assi:hover {
+    filter: brightness(1.4);
+}
+
+@media screen and (min-width: 941px) {
+    html body main .infos .jogadores {
+        flex-direction: column;
+        left: -470px;
+        top: -250px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    html body {
+        background: radial-gradient(ellipse 150% 70% at center, var(--background) 55%, var(--gradient));
+    }
+
+}
+
+/* Editando o switch alert 2 */
+.swal2-show {
+    font-size: 30px;
+}
+
+.swal2-height-auto {
+    min-height: 100% !important;
+}
+
+.swal2-html-container {
+    color: var(--color) !important;
+}

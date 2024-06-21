@@ -1,17 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Jacquard+12+Charted&display=swap');
+
 :root {
     --background: #1f1f22;
     /* --background: #333; */
     --color: #fff;
     --corJU: #ff7f00;
     --corJU: #0ff;
+    --neutra: #400070;
+    --gradient: #000000;
+    --corBlock: #0000007f;
 }
+/* TEMPORÁRIO */
 
+.temas{
+    display: none;
+}
 * {
     margin: 0;
     padding: 0;
-    text-decoration: none;
     border: none;
-}
+    outline: none;
+    color: inherit;
+    list-style: none;
+    z-index: inherit;
+    text-decoration: none;
+  }
 
 html {
     background-color: var(--background);
@@ -22,11 +35,10 @@ html {
     align-items: center;
     width: 100%;
     height: 100%;
-    /* filter: invert(1); */
 }
 
 body {
-    background: radial-gradient(var(--background) 60%, rgba(0, 0, 0, 0.5));
+    background: radial-gradient(ellipse 70% 150% at center, var(--background) 40%, var(--gradient));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +54,6 @@ html body header {
     align-items: flex-end;
     width: 100%;
     height: 100px;
-    /* margin-top: 10px; */
 }
 
 html body header h1 {
@@ -65,9 +76,6 @@ html body main .infos {
     flex-direction: column;
     border-radius: 15px;
     position: absolute;
-    /* right: 1000px; */
-    /* height: 450px;
-    width: 950px; */
     max-width: 100%;
     z-index: 99;
 }
@@ -115,7 +123,7 @@ html body main .boxgame {
 html body main .boxgame div {
     background-color: var(--background);
     width: 33%;
-    height: 33%;
+    aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,7 +133,7 @@ html body main .boxgame div {
 html body main .boxgame .tabuleiro div {
     background-color: var(--color);
     width: 87%;
-    height: 87%;
+    aspect-ratio: 1 / 1;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -139,7 +147,7 @@ html body main .boxgame .tabuleiro .modific {
     justify-content: center;
     position: absolute;
     font-size: 600%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--corBlock);
     border-radius: 15px;
     z-index: 99;
     width: 100%;
@@ -149,7 +157,7 @@ html body main .boxgame .tabuleiro .modific {
 html body main .boxgame .tabuleiro div div {
     background-color: var(--background);
     width: 32%;
-    height: 32%;
+    aspect-ratio: 1 / 1;
     text-align: center;
     display: flex;
     align-content: center;
@@ -181,7 +189,7 @@ html body footer .assi {
     height: 45px;
     width: 200px;
     border-radius: 10px;
-    background-color: #400070;
+    background-color: var(--neutra);
     transition: 0.2s;
 }
 
@@ -199,12 +207,14 @@ html body footer .assi:hover {
 
 @media screen and (max-width: 940px) {
     html body {
-        background: radial-gradient(ellipse 150% 70% at center, var(--background) 55%, rgba(0, 0, 0, 0.8));
+        background: radial-gradient(ellipse 150% 65% at center, var(--background) 50%, var(--gradient));
     }
-    html body header{
+
+    html body header {
         height: 60px;
     }
-    html body header h1{
+
+    html body header h1 {
         font-size: 30px;
     }
 
