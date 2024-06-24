@@ -1,20 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Jacquard+12+Charted&display=swap');
 
 :root {
-    --background: #1f1f22;
-    /* --background: #333; */
-    --color: #fff;
-    --corJU: #ff7f00;
-    --corJU: #0ff;
-    --neutra: #400070;
-    --gradient: #000000;
-    --corBlock: #0000007f;
+    --tTabuleiro: 520px;
+    --bRadius: 15px;
 }
-/* TEMPORÁRIO */
 
-.temas{
-    display: none;
-}
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +14,7 @@
     list-style: none;
     z-index: inherit;
     text-decoration: none;
-  }
+}
 
 html {
     background-color: var(--background);
@@ -47,7 +37,8 @@ body {
     height: 100%;
 }
 
-html body header {
+/* HEADER */
+header {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -56,63 +47,67 @@ html body header {
     height: 100px;
 }
 
-html body header h1 {
+header h1 {
     font-size: 37px;
 }
 
-html body main {
+/* MAIN */
+main {
     display: flex;
     flex-direction: row;
-    user-select: none;
-    align-items: center;
     justify-content: center;
     font-size: 30px;
-    width: 95%;
+    gap: calc(var(--tTabuleiro) + 30px);
+    max-height: var(--tTabuleiro);
+    height: 100%;
+    width: 90%;
     position: relative;
 }
 
-html body main .infos {
+main aside {
+    width: 250px;
+}
+
+/* INFORMAÇÕES */
+.infos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: var(--bRadius);
+}
+
+.infos .jogadores {
     display: flex;
     flex-direction: column;
-    border-radius: 15px;
-    position: absolute;
-    max-width: 100%;
-    z-index: 99;
 }
 
-html body main .infos .jogadores {
-    display: flex;
-    position: absolute;
-}
-
-html body main .infos .jogadores div {
+.infos .jogadores div {
     margin: 20px 10px;
-    border-radius: 15px;
+    border-radius: var(--bRadius);
     padding: 10px 15px;
     transition: 0.5s;
 }
 
-html body main .infos .jogadores .jogadorU span {
+.infos .jogadores .jogadorU span {
     color: var(--corJU);
+    text-shadow: 0px 0px 4px var(--corJU);
     font-size: 110%;
 }
 
-html body main .infos .jogadores .jogadorD span {
+.infos .jogadores .jogadorD span {
     color: var(--corJD);
+    text-shadow: 0px 0px 4px var(--corJD);
     font-size: 110%;
 }
 
-html body main .infos .reload {
-    display: flex;
-    align-self: flex-end;
-}
-
-html body main .boxgame {
+/* TABULEIRO */
+.boxgame {
+    position: absolute;
     background-color: var(--color);
     width: 100%;
-    max-width: 520px;
+    max-width: var(--tTabuleiro);
     max-height: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -120,7 +115,7 @@ html body main .boxgame {
     align-content: space-between;
 }
 
-html body main .boxgame div {
+.boxgame div {
     background-color: var(--background);
     width: 33%;
     aspect-ratio: 1 / 1;
@@ -130,7 +125,7 @@ html body main .boxgame div {
     position: relative;
 }
 
-html body main .boxgame .tabuleiro div {
+.boxgame .tabuleiro div {
     background-color: var(--color);
     width: 87%;
     aspect-ratio: 1 / 1;
@@ -140,7 +135,7 @@ html body main .boxgame .tabuleiro div {
     align-content: space-between;
 }
 
-html body main .boxgame .tabuleiro .modific {
+.boxgame .tabuleiro .modific {
     display: none;
     cursor: default;
     align-content: center;
@@ -148,13 +143,13 @@ html body main .boxgame .tabuleiro .modific {
     position: absolute;
     font-size: 600%;
     background-color: var(--corBlock);
-    border-radius: 15px;
+    border-radius: var(--bRadius);
     z-index: 99;
     width: 100%;
     height: 100%;
 }
 
-html body main .boxgame .tabuleiro div div {
+.boxgame .tabuleiro div div {
     background-color: var(--background);
     width: 32%;
     aspect-ratio: 1 / 1;
@@ -166,21 +161,31 @@ html body main .boxgame .tabuleiro div div {
     transition: 0.1s;
 }
 
-html body main .boxgame .tabuleiro div div:hover {
-    background-color: #444;
+/* TEMAS */
+.temas {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
 }
 
-html body main .boxgame .tabuleiro div div:active {
-    background-color: #777;
+.temas select {
+    background-color: var(--background);
+    color: var(--color);
+    margin: 18px 8px;
+    padding: 10px 15px;
+    font-size: 28px;
+    border: solid 2px #7f7f7f7f;
+    border-radius: var(--bRadius);
 }
 
-html body footer {
+/* FOOTER */
+footer {
     justify-content: center;
     height: 70px;
     margin-top: 10px;
 }
 
-html body footer .assi {
+footer .assi {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,64 +193,84 @@ html body footer .assi {
     font-size: 25px;
     height: 45px;
     width: 200px;
-    border-radius: 10px;
+    border-radius: var(--bRadius);
     background-color: var(--neutra);
     transition: 0.2s;
+    filter: brightness(0.8);
+    position: relative;
+    overflow: hidden;
+}
+footer .assi:hover {
+    filter: brightness(1.3);
+}
+/*
+footer .assi::before{
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: bright 10s ease-in-out infinite;
 }
 
-html body footer .assi:hover {
-    filter: brightness(1.4);
+@keyframes bright {
+    0% { transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { transform: scale(50) rotate(45deg); opacity: 0; }
 }
+*/
 
-@media screen and (min-width: 941px) {
-    html body main .infos .jogadores {
-        flex-direction: column;
-        left: -470px;
-        top: -250px;
-    }
-}
+/* Tela grande */
+/* @media screen and (min-width: 941px) {} */
 
+/* Tela pequena */
 @media screen and (max-width: 940px) {
-    html body {
+    body {
         background: radial-gradient(ellipse 160% 70% at center, var(--background) 60%, var(--gradient));
     }
 
-    html body header {
-        height: 60px;
-    }
-
-    html body header h1 {
+    header h1 {
         font-size: 30px;
     }
 
-    html body main .infos {
+    main {
+        flex-direction: column;
         align-items: center;
+        justify-content: space-around;
+        max-height: 100%;
+        height: 100%;
+    }
+    .infos {
+        width: 100%;
     }
 
-    html body main .infos .jogadores {
+    .infos .jogadores {
         flex-direction: row;
+        width: 100%;
+        justify-content: center;
         font-size: 80%;
-        top: -35vh;
-        width: auto;
-        white-space: nowrap;
     }
 
-    html body main .infos .reload {
-        align-self: center;
-        position: absolute;
-        top: 0;
-    }
-
-    html body main {
-        margin-top: 40px;
-    }
-
-    html body main .boxgame .tabuleiro .modific {
+    .boxgame .tabuleiro .modific {
         font-size: 350%;
     }
 
-    html body main .boxgame .tabuleiro div div {
-        font-size: 90%;
+    .boxgame .tabuleiro div div {
+        font-size: 70%;
+    }
+
+    .temas {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .temas select {
+        font-size: 16px;
     }
 }
 

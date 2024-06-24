@@ -8,14 +8,9 @@
     <meta name="author" content="Matheus Luz">
     <title>The Game of Old</title>
     <link href="img/iconjv.png" rel="icon">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet"> -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+    <link href="style.css" rel="stylesheet">
 
-        <!-- <link href="style.css" rel="stylesheet"> -->
-        <link href="style.css" rel="stylesheet">
-        
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <script src="script.js" type="text/javascript" defer></script>
 </head>
@@ -26,13 +21,13 @@
     </header>
     <main>
 
-        <section class="infos">
+        <aside class="infos">
             <div class="jogadores">
                 <div class="jogadorU" style="background-color: #7f7f7f55;">Jogador 1 - <span>X</span></div>
                 <div class="jogadorD">Jogador 2 - <span>O</span></div>
             </div>
-            <div class="reload" style="display: none;">Recomeçar</div>
-        </section>
+            <!-- <div class="reload" style="display: none;">Recomeçar</div> -->
+        </aside>
 
         <div class="boxgame">
             <div class="tabuleiro">
@@ -163,12 +158,16 @@
             </div>
         </div>
 
-        <section class="temas">
-            <select name="" id="">
-                <options value="ori">Ori</options>
-                <options value="white">White</options>
+        <aside class="temas">
+            <select id="opcoesTemas">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
             </select>
-        </section>
+            <select id="opcoesCores">
+                <option value="cores1">Laranja - Ciano</option>
+                <option value="cores2">Verde - Roxo</option>
+            </select>
+        </aside>
 
     </main>
     <footer>

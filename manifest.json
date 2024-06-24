@@ -1,5 +1,5 @@
 {
-  "background_color": "#181e24",
+  "background_color": "#1f1f22",
   "dir": "ltr",
   "display": "standalone",
   "name": "The Game of Old - Mathluz",
@@ -7,7 +7,7 @@
   "scope": "/",
   "short_name": "The Game of Old",
   "start_url": "https://mathluz.github.io/The-Game-of-Old/",
-  "theme_color": "#FF7f00",
+  "theme_color": "#37007f",
   "icons": [
     {
       "src": "img/iconjv.png",
