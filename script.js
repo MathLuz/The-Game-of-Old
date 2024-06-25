@@ -22,8 +22,8 @@ const tabuleiro = [
 let cheio = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 // Declaração de cores
-let corJU;
-let corJD;
+let corX;
+let corO;
 let fundo;
 let linhas;
 let neutra;
@@ -67,7 +67,7 @@ function jogada(elemento) {
 // Muda a cor e mostra o próximo a jogar
 function modificacoes(elemento) {
     // Mudar a cor conforme de quem é a vez
-    color = vez === 'X' ? corJU : corJD;
+    color = vez === 'X' ? corX : corO;
 
     // Mostra quem é o próximo
     let jogadorU = document.querySelector('.jogadorU');
@@ -268,39 +268,38 @@ function campoCheio() {
     for (let i = 0; i <= 8; i++) {
         cheio[i] = 0;
     }
-    console.clear();
     for (let i = 0; i <= 8; i++) {
         for (let j = 0; j <= 8; j++) {
-            console.clear();
+            // console.clear();
             // Primeiro campo
             if (i <= 2 && j <= 2 && tabuleiro[i][j] !== '') { cheio[0]++ }
-            console.log('1º campo ' + cheio[0]);
+            // console.log('1º campo ' + cheio[0]);
             // Segundo campo
             if (i <= 2 && j >= 3 && j <= 5 && tabuleiro[i][j] !== '') { cheio[1]++ }
-            console.log('2º campo ' + cheio[1]);
+            // console.log('2º campo ' + cheio[1]);
             // Terceiro campo
             if (i <= 2 && j >= 6 && tabuleiro[i][j] !== '') { cheio[2]++ }
-            console.log('3º campo ' + cheio[2]);
+            // console.log('3º campo ' + cheio[2]);
 
             // Quarto campo
             if (i >= 3 && i <= 5 && j <= 2 && tabuleiro[i][j] !== '') { cheio[3]++ }
-            console.log('4º campo ' + cheio[3]);
+            // console.log('4º campo ' + cheio[3]);
             // Quinto campo
             if (i >= 3 && i <= 5 && j >= 3 && j <= 5 && tabuleiro[i][j] !== '') { cheio[4]++ }
-            console.log('5º campo ' + cheio[4]);
+            // console.log('5º campo ' + cheio[4]);
             // Sexto campo
             if (i >= 3 && i <= 5 && j >= 6 && tabuleiro[i][j] !== '') { cheio[5]++ }
-            console.log('6º campo ' + cheio[5]);
+            // console.log('6º campo ' + cheio[5]);
 
             // Sétimo campo
             if (i >= 6 && j <= 2 && tabuleiro[i][j] !== '') { cheio[6]++ }
-            console.log('7º campo ' + cheio[6]);
+            // console.log('7º campo ' + cheio[6]);
             // Oitavo campo
             if (i >= 6 && j >= 3 && j <= 5 && tabuleiro[i][j] !== '') { cheio[7]++ }
-            console.log('8º campo ' + cheio[7]);
+            // console.log('8º campo ' + cheio[7]);
             // Nono campo
             if (i >= 6 && j >= 6 && tabuleiro[i][j] !== '') { cheio[8]++ }
-            console.log('9º campo ' + cheio[8]);
+            // console.log('9º campo ' + cheio[8]);
         }
     }
 }
@@ -310,9 +309,9 @@ function venceu() {
         title: vez,
         width: 450,
         text: " É O VENCEDOR!!",
-        color: vez === 'X' ? corJU : corJD,
+        color: vez === 'X' ? corX : corO,
         background: fundo + "ee",
-        confirmButtonColor: vez === 'X' ? corJU : corJD,
+        confirmButtonColor: vez === 'X' ? corX : corO,
         confirmButtonText: "GG",
         // timer: 6000,
         // showConfirmButton: false,
@@ -334,7 +333,7 @@ function velha() {
         if (estilo.display === 'flex') { contagem++; }
     }
 
-    console.log('Campos Bloquados: ' + contagem);
+    // console.log('Campos Bloquados: ' + contagem);
 
     if (contagem >= 9 && jaVenceu === false) {
         Swal.fire({
@@ -350,6 +349,7 @@ function velha() {
         });
     }
 }
+
 // Mudar tema
 
 selectTema.addEventListener('change', () => {
@@ -362,47 +362,16 @@ selectCores.addEventListener('change', () => {
 })
 
 corTema();
-function definirCores() {
-    if (escolhaTema === "dark") {
-        fundo = '#1f1f22';
-        linhas = '#fff';
-        gradient = '#040007';
-        corBlock = '#0000007f';
-    }
-    if (escolhaTema === "light") {
-        fundo = '#fff';
-        linhas = '#333';
-        gradient = '#aad';
-        corBlock = '#0000004c';
-    }
-    // CORES
-    if (escolhaCores === "laranCiano") {
-        corJU = '#ff7f00';
-        corJD = '#0ff';
-        neutra = '#5f00bd';
-    }
-    if (escolhaCores === "verdeRoxo") {
-        corJU = '#0f0';
-        corJD = '#7f00ff';
-        neutra = '#ef7700';
-    }
-    if (escolhaCores === "vermeVerde") {
-        corJU = '#f00';
-        corJD = '#0f0';
-        neutra = '#003f88';
-    }
-    if (escolhaCores === "rosaAzul") {
-        corJU = '#f0f';
-        corJD = '#009fff';
-        neutra = '#007f3f';
-    }
-}
-function corTema() {
-    filtSelect();
-    definirCores();
+async function definirCores() {
 
-    root.style.setProperty('--corJU', corJU);
-    root.style.setProperty('--corJD', corJD);
+    await conectaTemasECores();
+}
+async function corTema() {
+    filtSelect();
+    await definirCores();
+
+    root.style.setProperty('--corX', corX);
+    root.style.setProperty('--corO', corO);
     root.style.setProperty('--background', fundo);
     root.style.setProperty('--color', linhas);
     root.style.setProperty('--neutra', neutra);
@@ -412,32 +381,56 @@ function corTema() {
     houses.forEach((div) => {
         div.style.backgroundColor = fundo;
         if (div.innerHTML === "X") {
-            div.style.color = corJU;
-            div.style.textShadow = textShadow + corJU;
+            div.style.color = corX;
+            div.style.textShadow = textShadow + corX;
         } else if (div.innerHTML === "O") {
-            div.style.color = corJD;
-            div.style.textShadow = textShadow + corJD;
+            div.style.color = corO;
+            div.style.textShadow = textShadow + corO;
         }
     });
     for (let i = 0; i < classOri.length; i++) {
         if (classOri[i].innerHTML === "X") {
-            classOri[i].style.color = corJU;
-            classOri[i].style.textShadow = textShadow + corJU;
+            classOri[i].style.color = corX;
+            classOri[i].style.textShadow = textShadow + corX;
         } else if (classOri[i].innerHTML === "O") {
-            classOri[i].style.color = corJD;
-            classOri[i].style.textShadow = textShadow + corJD;
+            classOri[i].style.color = corO;
+            classOri[i].style.textShadow = textShadow + corO;
         }
     }
 }
 function filtSelect() {
     const options = document.querySelectorAll('option');
-    // console.log(options);
     options.forEach((elemento) => {
-        // console.log(elemento.value + " " + elemento.selected)
         if (elemento.selected) {
             elemento.style.display = "none"
         } else {
             elemento.style.display = "block"
         }
     })
+}
+
+async function conectaTemasECores(){
+    try {
+        const api = await fetch("/cores.json");
+        const apiJson = await api.json();
+        apiJson.temas.forEach((tema) => {
+            if(tema.nome === escolhaTema){
+                fundo = tema.fundo;
+                linhas = tema.linhas;
+                gradient = tema.gradient;
+                corBlock = tema.corBlock;
+            }
+        })
+        apiJson.cores.forEach((cor) => {
+            if(cor.nome === escolhaCores){
+                corX = cor.corX;
+                corO = cor.corO;
+                neutra = cor.neutra;
+            }
+        })
+    }
+    catch (erro){
+        console.log("Eita \n" + erro);
+        // setTimeout(window.location.reload(),1000);
+    }
 }

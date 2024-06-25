@@ -90,14 +90,14 @@ main aside {
 }
 
 .infos .jogadores .jogadorU span {
-    color: var(--corJU);
-    text-shadow: 0px 0px 4px var(--corJU);
+    color: var(--corX);
+    text-shadow: 0px 0px 4px var(--corX);
     font-size: 110%;
 }
 
 .infos .jogadores .jogadorD span {
-    color: var(--corJD);
-    text-shadow: 0px 0px 4px var(--corJD);
+    color: var(--corO);
+    text-shadow: 0px 0px 4px var(--corO);
     font-size: 110%;
 }
 
@@ -201,9 +201,11 @@ footer .assi {
     position: relative;
     overflow: hidden;
 }
+
 footer .assi:hover {
     filter: brightness(1.4);
 }
+
 /*
 footer .assi::before{
     position: absolute;
@@ -246,6 +248,7 @@ footer .assi::before{
         height: 100%;
         gap: 90vw;
     }
+
     .infos {
         width: 100%;
     }
@@ -275,6 +278,7 @@ footer .assi::before{
         font-size: 16px;
     }
 }
+
 
 /* Editando o switch alert 2 */
 .swal2-show {
