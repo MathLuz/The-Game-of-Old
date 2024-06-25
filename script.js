@@ -366,7 +366,7 @@ function definirCores() {
     if (escolhaTema === "dark") {
         fundo = '#1f1f22';
         linhas = '#fff';
-        gradient = '#070010';
+        gradient = '#040007';
         corBlock = '#0000007f';
     }
     if (escolhaTema === "light") {
@@ -376,15 +376,25 @@ function definirCores() {
         corBlock = '#0000004c';
     }
     // CORES
-    if (escolhaCores === "cores1") {
+    if (escolhaCores === "laranCiano") {
         corJU = '#ff7f00';
         corJD = '#0ff';
-        neutra = '#7f00ff';
+        neutra = '#5f00bd';
     }
-    if (escolhaCores === "cores2") {
+    if (escolhaCores === "verdeRoxo") {
         corJU = '#0f0';
         corJD = '#7f00ff';
-        neutra = '#ff7f00';
+        neutra = '#ef7700';
+    }
+    if (escolhaCores === "vermeVerde") {
+        corJU = '#f00';
+        corJD = '#0f0';
+        neutra = '#003f88';
+    }
+    if (escolhaCores === "rosaAzul") {
+        corJU = '#f0f';
+        corJD = '#009fff';
+        neutra = '#007f3f';
     }
 }
 function corTema() {
