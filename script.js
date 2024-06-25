@@ -411,7 +411,7 @@ function filtSelect() {
 
 async function conectaTemasECores(){
     try {
-        const api = await fetch("https://raw.githubusercontent.com/MathLuz/The-Game-of-Old/main/cores.json");
+        const api = await fetch("cores.json");
         const apiJson = await api.json();
         apiJson.temas.forEach((tema) => {
             if(tema.nome === escolhaTema){
