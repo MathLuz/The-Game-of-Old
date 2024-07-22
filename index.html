@@ -9,10 +9,12 @@
     <title>The Game of Old</title>
     <link href="img/iconjv.png" rel="icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="style.css" rel="stylesheet">
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-    <script src="script.js" type="text/javascript" defer></script>
+    <!-- <script src="script.js" type="text/javascript" defer></script> -->
+    <script src="js/cores.js" defer></script>
+    <script src="js/jogo.js" defer></script>
 </head>
 
 <body>
@@ -33,127 +35,127 @@
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="a1"></div>
-                    <div onclick="jogada(this)" data-pos="b1"></div>
-                    <div onclick="jogada(this)" data-pos="c1"></div>
-                    <div onclick="jogada(this)" data-pos="a2"></div>
-                    <div onclick="jogada(this)" data-pos="b2"></div>
-                    <div onclick="jogada(this)" data-pos="c2"></div>
-                    <div onclick="jogada(this)" data-pos="a3"></div>
-                    <div onclick="jogada(this)" data-pos="b3"></div>
-                    <div onclick="jogada(this)" data-pos="c3"></div>
+                    <div onclick="jogada(this)" data-pos="a1">a1</div>
+                    <div onclick="jogada(this)" data-pos="b1">b1</div>
+                    <div onclick="jogada(this)" data-pos="c1">c1</div>
+                    <div onclick="jogada(this)" data-pos="a2">a2</div>
+                    <div onclick="jogada(this)" data-pos="b2">b2</div>
+                    <div onclick="jogada(this)" data-pos="c2">c2</div>
+                    <div onclick="jogada(this)" data-pos="a3">a3</div>
+                    <div onclick="jogada(this)" data-pos="b3">b3</div>
+                    <div onclick="jogada(this)" data-pos="c3">c3</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="d1"></div>
-                    <div onclick="jogada(this)" data-pos="e1"></div>
-                    <div onclick="jogada(this)" data-pos="f1"></div>
-                    <div onclick="jogada(this)" data-pos="d2"></div>
-                    <div onclick="jogada(this)" data-pos="e2"></div>
-                    <div onclick="jogada(this)" data-pos="f2"></div>
-                    <div onclick="jogada(this)" data-pos="d3"></div>
-                    <div onclick="jogada(this)" data-pos="e3"></div>
-                    <div onclick="jogada(this)" data-pos="f3"></div>
+                    <div onclick="jogada(this)" data-pos="d1">d1</div>
+                    <div onclick="jogada(this)" data-pos="e1">e1</div>
+                    <div onclick="jogada(this)" data-pos="f1">f1</div>
+                    <div onclick="jogada(this)" data-pos="d2">d2</div>
+                    <div onclick="jogada(this)" data-pos="e2">e2</div>
+                    <div onclick="jogada(this)" data-pos="f2">f2</div>
+                    <div onclick="jogada(this)" data-pos="d3">d3</div>
+                    <div onclick="jogada(this)" data-pos="e3">e3</div>
+                    <div onclick="jogada(this)" data-pos="f3">f3</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="g1"></div>
-                    <div onclick="jogada(this)" data-pos="h1"></div>
-                    <div onclick="jogada(this)" data-pos="i1"></div>
-                    <div onclick="jogada(this)" data-pos="g2"></div>
-                    <div onclick="jogada(this)" data-pos="h2"></div>
-                    <div onclick="jogada(this)" data-pos="i2"></div>
-                    <div onclick="jogada(this)" data-pos="g3"></div>
-                    <div onclick="jogada(this)" data-pos="h3"></div>
-                    <div onclick="jogada(this)" data-pos="i3"></div>
+                    <div onclick="jogada(this)" data-pos="g1">g1</div>
+                    <div onclick="jogada(this)" data-pos="h1">h1</div>
+                    <div onclick="jogada(this)" data-pos="i1">i1</div>
+                    <div onclick="jogada(this)" data-pos="g2">g2</div>
+                    <div onclick="jogada(this)" data-pos="h2">h2</div>
+                    <div onclick="jogada(this)" data-pos="i2">i2</div>
+                    <div onclick="jogada(this)" data-pos="g3">g3</div>
+                    <div onclick="jogada(this)" data-pos="h3">h3</div>
+                    <div onclick="jogada(this)" data-pos="i3">i3</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="a4"></div>
-                    <div onclick="jogada(this)" data-pos="b4"></div>
-                    <div onclick="jogada(this)" data-pos="c4"></div>
-                    <div onclick="jogada(this)" data-pos="a5"></div>
-                    <div onclick="jogada(this)" data-pos="b5"></div>
-                    <div onclick="jogada(this)" data-pos="c5"></div>
-                    <div onclick="jogada(this)" data-pos="a6"></div>
-                    <div onclick="jogada(this)" data-pos="b6"></div>
-                    <div onclick="jogada(this)" data-pos="c6"></div>
+                    <div onclick="jogada(this)" data-pos="a4">a4</div>
+                    <div onclick="jogada(this)" data-pos="b4">b4</div>
+                    <div onclick="jogada(this)" data-pos="c4">c4</div>
+                    <div onclick="jogada(this)" data-pos="a5">a5</div>
+                    <div onclick="jogada(this)" data-pos="b5">b5</div>
+                    <div onclick="jogada(this)" data-pos="c5">c5</div>
+                    <div onclick="jogada(this)" data-pos="a6">a6</div>
+                    <div onclick="jogada(this)" data-pos="b6">b6</div>
+                    <div onclick="jogada(this)" data-pos="c6">c6</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="d4"></div>
-                    <div onclick="jogada(this)" data-pos="e4"></div>
-                    <div onclick="jogada(this)" data-pos="f4"></div>
-                    <div onclick="jogada(this)" data-pos="d5"></div>
-                    <div onclick="jogada(this)" data-pos="e5"></div>
-                    <div onclick="jogada(this)" data-pos="f5"></div>
-                    <div onclick="jogada(this)" data-pos="d6"></div>
-                    <div onclick="jogada(this)" data-pos="e6"></div>
-                    <div onclick="jogada(this)" data-pos="f6"></div>
+                    <div onclick="jogada(this)" data-pos="d4">d4</div>
+                    <div onclick="jogada(this)" data-pos="e4">e4</div>
+                    <div onclick="jogada(this)" data-pos="f4">f4</div>
+                    <div onclick="jogada(this)" data-pos="d5">d5</div>
+                    <div onclick="jogada(this)" data-pos="e5">e5</div>
+                    <div onclick="jogada(this)" data-pos="f5">f5</div>
+                    <div onclick="jogada(this)" data-pos="d6">d6</div>
+                    <div onclick="jogada(this)" data-pos="e6">e6</div>
+                    <div onclick="jogada(this)" data-pos="f6">f6</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="g4"></div>
-                    <div onclick="jogada(this)" data-pos="h4"></div>
-                    <div onclick="jogada(this)" data-pos="i4"></div>
-                    <div onclick="jogada(this)" data-pos="g5"></div>
-                    <div onclick="jogada(this)" data-pos="h5"></div>
-                    <div onclick="jogada(this)" data-pos="i5"></div>
-                    <div onclick="jogada(this)" data-pos="g6"></div>
-                    <div onclick="jogada(this)" data-pos="h6"></div>
-                    <div onclick="jogada(this)" data-pos="i6"></div>
+                    <div onclick="jogada(this)" data-pos="g4">g4</div>
+                    <div onclick="jogada(this)" data-pos="h4">h4</div>
+                    <div onclick="jogada(this)" data-pos="i4">i4</div>
+                    <div onclick="jogada(this)" data-pos="g5">g5</div>
+                    <div onclick="jogada(this)" data-pos="h5">h5</div>
+                    <div onclick="jogada(this)" data-pos="i5">i5</div>
+                    <div onclick="jogada(this)" data-pos="g6">g6</div>
+                    <div onclick="jogada(this)" data-pos="h6">h6</div>
+                    <div onclick="jogada(this)" data-pos="i6">i6</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="a7"></div>
-                    <div onclick="jogada(this)" data-pos="b7"></div>
-                    <div onclick="jogada(this)" data-pos="c7"></div>
-                    <div onclick="jogada(this)" data-pos="a8"></div>
-                    <div onclick="jogada(this)" data-pos="b8"></div>
-                    <div onclick="jogada(this)" data-pos="c8"></div>
-                    <div onclick="jogada(this)" data-pos="a9"></div>
-                    <div onclick="jogada(this)" data-pos="b9"></div>
-                    <div onclick="jogada(this)" data-pos="c9"></div>
+                    <div onclick="jogada(this)" data-pos="a7">a7</div>
+                    <div onclick="jogada(this)" data-pos="b7">b7</div>
+                    <div onclick="jogada(this)" data-pos="c7">c7</div>
+                    <div onclick="jogada(this)" data-pos="a8">a8</div>
+                    <div onclick="jogada(this)" data-pos="b8">b8</div>
+                    <div onclick="jogada(this)" data-pos="c8">c8</div>
+                    <div onclick="jogada(this)" data-pos="a9">a9</div>
+                    <div onclick="jogada(this)" data-pos="b9">b9</div>
+                    <div onclick="jogada(this)" data-pos="c9">c9</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="d7"></div>
-                    <div onclick="jogada(this)" data-pos="e7"></div>
-                    <div onclick="jogada(this)" data-pos="f7"></div>
-                    <div onclick="jogada(this)" data-pos="d8"></div>
-                    <div onclick="jogada(this)" data-pos="e8"></div>
-                    <div onclick="jogada(this)" data-pos="f8"></div>
-                    <div onclick="jogada(this)" data-pos="d9"></div>
-                    <div onclick="jogada(this)" data-pos="e9"></div>
-                    <div onclick="jogada(this)" data-pos="f9"></div>
+                    <div onclick="jogada(this)" data-pos="d7">d7</div>
+                    <div onclick="jogada(this)" data-pos="e7">e7</div>
+                    <div onclick="jogada(this)" data-pos="f7">f7</div>
+                    <div onclick="jogada(this)" data-pos="d8">d8</div>
+                    <div onclick="jogada(this)" data-pos="e8">e8</div>
+                    <div onclick="jogada(this)" data-pos="f8">f8</div>
+                    <div onclick="jogada(this)" data-pos="d9">d9</div>
+                    <div onclick="jogada(this)" data-pos="e9">e9</div>
+                    <div onclick="jogada(this)" data-pos="f9">f9</div>
                 </div>
             </div>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>
-                    <div onclick="jogada(this)" data-pos="g7"></div>
-                    <div onclick="jogada(this)" data-pos="h7"></div>
-                    <div onclick="jogada(this)" data-pos="i7"></div>
-                    <div onclick="jogada(this)" data-pos="g8"></div>
-                    <div onclick="jogada(this)" data-pos="h8"></div>
-                    <div onclick="jogada(this)" data-pos="i8"></div>
-                    <div onclick="jogada(this)" data-pos="g9"></div>
-                    <div onclick="jogada(this)" data-pos="h9"></div>
-                    <div onclick="jogada(this)" data-pos="i9"></div>
+                    <div onclick="jogada(this)" data-pos="g7">g7</div>
+                    <div onclick="jogada(this)" data-pos="h7">h7</div>
+                    <div onclick="jogada(this)" data-pos="i7">i7</div>
+                    <div onclick="jogada(this)" data-pos="g8">g8</div>
+                    <div onclick="jogada(this)" data-pos="h8">h8</div>
+                    <div onclick="jogada(this)" data-pos="i8">i8</div>
+                    <div onclick="jogada(this)" data-pos="g9">g9</div>
+                    <div onclick="jogada(this)" data-pos="h9">h9</div>
+                    <div onclick="jogada(this)" data-pos="i9">i9</div>
                 </div>
             </div>
         </div>
@@ -164,11 +166,16 @@
                 <option value="light">Light</option>
             </select>
             <select id="opcoesCores">
-                <option value="laraCian">Laranja / Ciano</option>
+                <option value="laraCian" selected>Laranja / Ciano</option>
                 <option value="verdRoxo">Verde / Roxo</option>
                 <option value="vermVerd">Vermelho / Verde</option>
                 <option value="rosaAzul">Rosa / Azul</option>
             </select>
+            <div class="marcacoesCheck">
+                <input type="checkbox" id="marcacoes" checked>
+                <label>Marcações</label>
+                <i class="fa-solid fa-check"></i>
+            </div>
         </aside>
 
     </main>
