@@ -7,4 +7,4 @@ A posição da casa jogada é relativa ao campo que o outro jogador terá que jo
 O campo completo ou que possui um vencedor é bloqueado e finalizado, caso seja o que deverá ser jogado, todos os outros não finalizados, ficaram livres;<br>
 Ganha o jogo quem traçar uma reta de 3 campos, ganha o campo quem traçar uma reta de 3 casas.
 ### Boa sorte!
-### [`Jogar`](https://mathluz.github.io/The-Game-of-Old/)
+### [`Jogar`](https://the-game-of-old.vercel.app/)
