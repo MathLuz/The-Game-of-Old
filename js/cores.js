@@ -20,8 +20,8 @@ const icone = document.querySelector('.marcacoesCheck i')
 
 const temaLight = window.matchMedia("(prefers-color-scheme: light)").matches
 if (temaLight) {
-    console.log(selectTema.value)
     selectTema.value = "light"
+    escolhaTema = "light"
 }
 
 selectTema.addEventListener('change', () => {
@@ -82,7 +82,7 @@ function filtSelect() {
 
 async function conectaTemasECores() {
     try {
-        const api = await fetch("db.json");
+        const api = await fetch("../cores.json");
         const apiJson = await api.json();
         apiJson.temas.forEach((tema) => {
             if (tema.nome === escolhaTema) {

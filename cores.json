@@ -9,7 +9,7 @@
         },
         {
           "nome": "light",
-          "fundo": "#fffcf4",
+          "fundo": "#fffcf2",
           "linhas": "#333",
           "gradient": "#aaa",
           "corBlock": "#0000004c"
