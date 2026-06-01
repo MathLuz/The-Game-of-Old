@@ -1,4 +1,4 @@
-let color
+let color;
 let corX;
 let corO;
 let fundo;
