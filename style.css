@@ -55,7 +55,7 @@ header {
 
 header h1 {
     font-size: 52px;
-    color: var(--corX);
+    /* color: var(--corX); */
     text-shadow: 0px 0px 12px var(--corX);
     letter-spacing: 3px;
 }
@@ -78,6 +78,7 @@ main {
     max-width: 1100px;
     user-select: none;
 }
+
 .jogos {
     display: flex;
     flex-direction: column;
@@ -95,9 +96,10 @@ main {
     justify-content: center;
     gap: 18px;
     width: 260px;
-    padding: 40px 30px;
+    padding: 30px;
     background-color: var(--background);
-    border: 2px solid var(--color);
+    /* border: 1px solid color-mix(in srgb, var(--color) 30%, #00000000 70%); */
+    border: 2px solid #7f7f7f7f;
     border-radius: var(--bRadius);
     cursor: pointer;
     transition: 0.3s;
@@ -248,17 +250,26 @@ footer .assi::before {
         transform: scale(0) rotate(45deg);
         opacity: 0;
     }
+
     80% {
         transform: scale(0) rotate(45deg);
         opacity: 0.5;
     }
+
     81% {
         transform: scale(4) rotate(45deg);
         opacity: 1;
     }
+
     100% {
         transform: scale(50) rotate(45deg);
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    body {
+        background: radial-gradient(ellipse 160% 70% at center, var(--background) 60%, var(--gradient));
     }
 }
 

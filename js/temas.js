@@ -14,7 +14,7 @@ if (savedTema) {
     selectTema.value = "light";
 }
 if (savedCores) selectCores.value = savedCores;
-if (savedMarcacoes === 'true') marcacoes.checked = true;
+if (marcacoes && savedMarcacoes === 'true') marcacoes.checked = true;
 
 let escolhaTema = selectTema.value;
 let escolhaCores = selectCores.value;
@@ -26,18 +26,15 @@ selectTema.addEventListener('change', () => {
     escolhaTema = selectTema.value;
     localStorage.setItem('tema', escolhaTema);
     aplicarTema();
-    filtSelect();
 });
 selectCores.addEventListener('change', () => {
     escolhaCores = selectCores.value;
     localStorage.setItem('cores', escolhaCores);
     aplicarTema();
-    filtSelect();
 });
-marcacoes.addEventListener('click', onMarcacoesClick);
+if (marcacoes) marcacoes.addEventListener('click', onMarcacoesClick);
 
 aplicarTema();
-filtSelect();
 atualizarIcone();
 
 function onMarcacoesClick() {
@@ -45,14 +42,8 @@ function onMarcacoesClick() {
     atualizarIcone();
 }
 
-function filtSelect() {
-    document.querySelectorAll('option').forEach((opt) => {
-        opt.style.display = opt.selected ? "none" : "block";
-    });
-}
-
 function atualizarIcone() {
-    icone.style.color = marcacoes.checked ? "" : "#8f8f8f00";
+    if (icone && marcacoes) icone.style.color = marcacoes.checked ? "" : "#8f8f8f00";
 }
 
 async function aplicarTema() {
@@ -60,7 +51,7 @@ async function aplicarTema() {
         const pagePath = window.location.pathname;
         const jsonPath = pagePath.includes('/the-game-of-old/')
             ? 'cores.json'
-            : pagePath.includes('/classico/')
+            : pagePath.includes('/classico/') || pagePath.includes('/infinito/')
                 ? '../the-game-of-old/cores.json'
                 : 'the-game-of-old/cores.json';
         const res = await fetch(jsonPath);
