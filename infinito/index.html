@@ -21,6 +21,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <script src="../js/temas.js" defer></script>
     <script src="js/cores.js" defer></script>
+    <script src="../js/controle.js" defer></script>
+    <script src="js/motor.js" defer></script>
+    <script src="../js/niveis.js" defer></script>
+    <script src="js/bot.js" defer></script>
     <script src="js/jogo.js" defer></script>
 </head>
 
@@ -33,8 +37,20 @@
 
         <aside class="infos">
             <div class="jogadores">
-                <div class="jogadorU" style="background-color: #7f7f7f55;">Jogador 1 - <span>X</span></div>
+                <div class="jogadorU">Jogador 1 - <span>X</span></div>
                 <div class="jogadorD">Jogador 2 - <span>O</span></div>
+            </div>
+            <div class="config-jogo">
+                <select id="oponente" title="Oponente">
+                    <option value="humano">2 jogadores</option>
+                    <option value="facil">vs Bot - Fácil</option>
+                    <option value="medio">vs Bot - Médio</option>
+                    <option value="dificil">vs Bot - Difícil</option>
+                </select>
+                <select id="ladoHumano" title="Sua peça">
+                    <option value="X">Você joga de X</option>
+                    <option value="O">Você joga de O</option>
+                </select>
             </div>
         </aside>
 

@@ -7,27 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Matheus Luz">
     <title>The Game of Old</title>
-    <link href="../assets/img/iconjv.png" rel="icon">
-    <link rel="manifest" href="../manifest.json">
-    <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
-    <meta name="theme-color" content="#222222">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="The Game of Old">
-    <meta name="application-name" content="The Game of Old">
-    <script src="../js/pwa.js" defer></script>
+    <link href="img/iconjv.png" rel="icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <!-- <script src="script.js" type="text/javascript" defer></script> -->
-    <script src="../js/temas.js" defer></script>
     <script src="js/cores.js" defer></script>
     <script src="js/jogo.js" defer></script>
 </head>
 
 <body>
     <header>
-        <a href="../" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i></a>
         <h1>The Game of Old</h1>
     </header>
     <main>
@@ -37,10 +28,10 @@
                 <div class="jogadorU" style="background-color: #7f7f7f55;">Jogador 1 - <span>X</span></div>
                 <div class="jogadorD">Jogador 2 - <span>O</span></div>
             </div>
+            <!-- <div class="reload" style="display: none;">Recomeçar</div> -->
         </aside>
 
         <div class="boxgame">
-            <button class="btn-reset" onclick="reiniciar()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
             <div class="tabuleiro">
                 <div class="modific campo"></div>
                 <div>

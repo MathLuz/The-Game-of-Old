@@ -1,93 +1,80 @@
-let vez = 'X';
-let jaVenceu = false;
-const tabuleiro = ['', '', '', '', '', '', '', '', ''];
-
-const COMBINACOES_VITORIA = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Horizontais
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Verticais
-    [0, 4, 8], [2, 4, 6]              // Diagonais
-];
+// Interface do clássico: as regras ficam em motor.js e o bot em bot.js.
+// Aqui só tratamos cliques, desenhamos o estado e mostramos o resultado.
+let estado = MotorClassico.novoEstado();
+const celulas = document.querySelectorAll('.boxgame .celula');
 
 function jogada(elemento) {
     const pos = parseInt(elemento.getAttribute('data-pos'));
-    if (tabuleiro[pos] !== '' || jaVenceu) return;
-
-    tabuleiro[pos] = vez;
-    elemento.innerHTML = vez;
-
-    color = vez === 'X' ? corX : corO;
-    elemento.style.color = color;
-    elemento.style.textShadow = textShadow + color;
-
-    if (verificarVencedor()) {
-        venceu();
-        return;
-    }
-
-    if (tabuleiro.every(c => c !== '')) {
-        velha();
-        return;
-    }
-
-    vez = vez === 'X' ? 'O' : 'X';
-    modificacoes();
+    if (Controle.ehBot(estado.vez)) return; // vez do bot: clique ignorado
+    if (!MotorClassico.ehLegal(estado, pos)) return;
+    executar(pos);
 }
 
-function modificacoes() {
-    const jogadorU = document.querySelector('.jogadorU');
-    const jogadorD = document.querySelector('.jogadorD');
-    const corBorda = '#7f7f7f55';
-    if (vez === 'X') {
-        jogadorU.style.backgroundColor = corBorda;
-        jogadorD.style.backgroundColor = '';
-    } else {
-        jogadorD.style.backgroundColor = corBorda;
-        jogadorU.style.backgroundColor = '';
+function executar(pos) {
+    estado = MotorClassico.jogar(estado, pos);
+    renderizar();
+    if (estado.vencedor) {
+        fimDeJogo();
+        return;
     }
+    vezDoBot();
 }
 
-function verificarVencedor() {
-    return COMBINACOES_VITORIA.some(([a, b, c]) =>
-        tabuleiro[a] !== '' && tabuleiro[a] === vez && tabuleiro[b] === vez && tabuleiro[c] === vez
-    );
+function vezDoBot() {
+    if (estado.vencedor || !Controle.ehBot(estado.vez)) return;
+    const copia = MotorClassico.clonar(estado);
+    AgendaBot.agendar({
+        simbolo: estado.vez,
+        calcular: () => BotClassico.escolherJogada(copia, Controle.nivel()),
+        aplicar: executar,
+    });
+}
+
+function renderizar() {
+    celulas.forEach((celula) => {
+        const pos = parseInt(celula.getAttribute('data-pos'));
+        const valor = estado.tab[pos];
+        const cor = valor === 'X' ? corX : corO;
+        celula.innerHTML = valor;
+        celula.style.color = valor ? cor : '';
+        const brilho = estado.linha && estado.linha.includes(pos) ? textShadowG : textShadow;
+        celula.style.textShadow = valor ? brilho + cor : '';
+        celula.classList.toggle('ultima', pos === estado.ultima);
+    });
+    Controle.destacarVez(estado.vencedor ? null : estado.vez);
 }
 
 function reiniciar() {
-    tabuleiro.fill('');
-    jaVenceu = false;
-    vez = 'X';
-    document.querySelectorAll('.boxgame .celula').forEach(celula => {
-        celula.innerHTML = '';
-        celula.style.color = '';
-        celula.style.textShadow = '';
-        celula.style.backgroundColor = fundo;
-    });
-    document.querySelector('.jogadorU').style.backgroundColor = '#7f7f7f55';
-    document.querySelector('.jogadorD').style.backgroundColor = '';
+    AgendaBot.cancelar();
+    estado = MotorClassico.novoEstado();
+    renderizar();
+    vezDoBot();
 }
 
-function venceu() {
-    jaVenceu = true;
+function fimDeJogo() {
+    const v = estado.vencedor;
+    if (v === 'velha') {
+        Swal.fire({
+            width: 450,
+            title: "Deu Velha!!",
+            text: "Empatou, joguem novamente",
+            color: linhas,
+            background: fundo + "ee",
+            confirmButtonColor: neutra,
+            confirmButtonText: "GG",
+        });
+        return;
+    }
     Swal.fire({
-        title: vez,
+        title: v,
         width: 450,
-        text: " É O VENCEDOR!!",
-        color: vez === 'X' ? corX : corO,
+        text: Controle.textoVitoria(v),
+        color: v === 'X' ? corX : corO,
         background: fundo + "ee",
-        confirmButtonColor: vez === 'X' ? corX : corO,
+        confirmButtonColor: v === 'X' ? corX : corO,
         confirmButtonText: "GG",
     });
 }
 
-function velha() {
-    jaVenceu = true;
-    Swal.fire({
-        width: 450,
-        title: "Deu Velha!!",
-        text: "Empatou, joguem novamente",
-        color: linhas,
-        background: fundo + "ee",
-        confirmButtonColor: neutra,
-        confirmButtonText: "GG",
-    });
-}
+Controle.aoMudar(reiniciar);
+reiniciar();

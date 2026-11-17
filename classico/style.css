@@ -304,3 +304,79 @@ footer .assi::before {
 .swal2-html-container {
   color: var(--color) !important;
 }
+
+/* OPONENTE (2 jogadores / bot) */
+.infos .config-jogo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infos .config-jogo select {
+  color: var(--color);
+  background-color: var(--background);
+  border: 2px solid #7f7f7f7f;
+  border-radius: var(--bRadius);
+  font-family: 'Acme', sans-serif;
+  padding: 8px 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.infos .config-jogo select[hidden] {
+  display: none;
+}
+
+/* Bot pensando: o nome dele pulsa */
+.infos .jogadores .pensando {
+  animation: pensando 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes pensando {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+
+/* Última jogada feita */
+.boxgame .celula.ultima {
+  box-shadow: inset 0 0 0 3px #7f7f7f55;
+}
+
+/* No celular o tabuleiro fica por cima do meio da tela: jogadores e seletores
+   dividem a mesma faixa (quebrando linha se precisar) para não ficarem atrás dele */
+@media screen and (max-width: 940px) {
+  .infos {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .infos .jogadores {
+    width: auto;
+  }
+
+  .infos .jogadores div {
+    margin: 6px 0px;
+    padding: 6px 14px;
+  }
+
+  .infos .config-jogo {
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .infos .config-jogo select {
+    font-size: 15px;
+    padding: 5px 6px;
+  }
+}
