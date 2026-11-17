@@ -1,0 +1,52 @@
+{
+  "id": "./",
+  "name": "Jogos da Velha - The Game of Old",
+  "short_name": "Game of Old",
+  "description": "O Jogo da Velha em outro nível: The Game of Old (9x9), Clássico e Infinito.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#222222",
+  "theme_color": "#222222",
+  "categories": ["entertainment", "games"],
+  "icons": [
+    {
+      "src": "assets/img/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "The Game of Old (9x9)",
+      "url": "./the-game-of-old/",
+      "icons": [{ "src": "assets/img/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Clássico",
+      "url": "./classico/",
+      "icons": [{ "src": "assets/img/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Infinito",
+      "url": "./infinito/",
+      "icons": [{ "src": "assets/img/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
