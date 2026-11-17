@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "Jogos da Velha - The Game of Old",
-  "short_name": "Game of Old",
+  "name": "The Game of Old",
+  "short_name": "The Game of Old",
   "description": "O Jogo da Velha em outro nível: The Game of Old (9x9), Clássico e Infinito.",
   "lang": "pt-BR",
   "dir": "ltr",
