@@ -59,7 +59,7 @@ function reiniciar() {
     AgendaBot.cancelar();
     estado = MotorInfinito.novoEstado();
     renderizar();
-    // Médio e difícil usam a solução completa do jogo: calcula logo (uma vez só)
+    // Médio, difícil e impossível usam a solução completa do jogo: calcula logo (uma vez só)
     if (Controle.vsBot() && Controle.nivel() !== 'facil') setTimeout(BotInfinito.resolver, 50);
     vezDoBot();
 }

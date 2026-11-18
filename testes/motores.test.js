@@ -39,7 +39,7 @@ test('clássico: vitória, velha e jogada inválida', () => {
     assert.throws(() => MC.jogar(jogarSequencia(MC, [4]), 4));
 });
 
-test('clássico: bot difícil nunca perde (todas as respostas possíveis do humano)', () => {
+test('clássico: bot impossível nunca perde (todas as respostas possíveis do humano)', () => {
     for (const ladoBot of ['X', 'O']) {
         const aleatorio = rng(1);
         let partidas = 0;
@@ -49,7 +49,7 @@ test('clássico: bot difícil nunca perde (todas as respostas possíveis do huma
                 assert.ok(e.vencedor === ladoBot || e.vencedor === 'velha', `bot ${ladoBot} perdeu: ${e.tab.join('')}`);
                 return;
             }
-            if (e.vez === ladoBot) explorar(MC.jogar(e, BC.escolherJogada(e, 'dificil', aleatorio)));
+            if (e.vez === ladoBot) explorar(MC.jogar(e, BC.escolherJogada(e, 'impossivel', aleatorio)));
             else for (const p of MC.jogadasLegais(e)) explorar(MC.jogar(e, p));
         })(MC.novoEstado());
         assert.ok(partidas > 50);
@@ -58,9 +58,30 @@ test('clássico: bot difícil nunca perde (todas as respostas possíveis do huma
 
 test('clássico: bot ganha quando pode e bloqueia quando precisa', () => {
     // X: 0,1  O: 3,4  → vez de X, 2 ganha
-    assert.equal(BC.escolherJogada(jogarSequencia(MC, [0, 3, 1, 4]), 'dificil'), 2);
+    assert.equal(BC.escolherJogada(jogarSequencia(MC, [0, 3, 1, 4]), 'impossivel'), 2);
     // X: 0,1  O: 4  → vez de O, precisa bloquear em 2
-    assert.equal(BC.escolherJogada(jogarSequencia(MC, [0, 4, 1]), 'dificil'), 2);
+    assert.equal(BC.escolherJogada(jogarSequencia(MC, [0, 4, 1]), 'impossivel'), 2);
+});
+
+test('clássico: difícil sempre ganha na hora e bloqueia, mas é possível vencê-lo', () => {
+    for (let semente = 0; semente < 30; semente++) {
+        const aleatorio = rng(semente);
+        assert.equal(BC.escolherJogada(jogarSequencia(MC, [0, 3, 1, 4]), 'dificil', aleatorio), 2);
+        assert.equal(BC.escolherJogada(jogarSequencia(MC, [0, 4, 1]), 'dificil', aleatorio), 2);
+    }
+    // Jogador perfeito contra o difícil: às vezes vence, nunca perde
+    const aleatorio = rng(21);
+    let vitoriasHumano = 0;
+    for (let partida = 0; partida < 300; partida++) {
+        const ladoBot = partida % 2 === 0 ? 'X' : 'O';
+        let e = MC.novoEstado();
+        while (!e.vencedor) {
+            e = MC.jogar(e, BC.escolherJogada(e, e.vez === ladoBot ? 'dificil' : 'impossivel', aleatorio));
+        }
+        assert.notEqual(e.vencedor, ladoBot);
+        if (e.vencedor !== 'velha') vitoriasHumano++;
+    }
+    assert.ok(vitoriasHumano >= 15, 'vitórias do humano: ' + vitoriasHumano);
 });
 
 // ---------------------------------------------------------------- INFINITO
@@ -123,24 +144,24 @@ test('infinito: solução retrógrada confere com busca independente', () => {
     assert.ok(conferidas >= 30, 'poucas posições conferidas: ' + conferidas);
 });
 
-test('infinito: X tem vitória forçada; difícil x difícil termina com X vencendo', () => {
+test('infinito: X tem vitória forçada; impossível x impossível termina com X vencendo', () => {
     assert.equal(BI.resultadoDa(MI.novoEstado()), 'vitoria');
     const aleatorio = rng(3);
     for (let partida = 0; partida < 5; partida++) {
         let e = MI.novoEstado();
-        for (let k = 0; k < 60 && !e.vencedor; k++) e = MI.jogar(e, BI.escolherJogada(e, 'dificil', aleatorio));
+        for (let k = 0; k < 60 && !e.vencedor; k++) e = MI.jogar(e, BI.escolherJogada(e, 'impossivel', aleatorio));
         assert.equal(e.vencedor, 'X');
     }
 });
 
-test('infinito: difícil (como O) nunca perde para jogadas aleatórias que não sejam perfeitas', () => {
+test('infinito: impossível (como O) nunca perde para jogadas aleatórias que não sejam perfeitas', () => {
     const aleatorio = rng(11);
     let derrotas = 0, vitorias = 0;
     for (let partida = 0; partida < 40; partida++) {
         let e = MI.novoEstado();
         for (let k = 0; k < 120 && !e.vencedor; k++) {
             const p = e.vez === 'O'
-                ? BI.escolherJogada(e, 'dificil', aleatorio)
+                ? BI.escolherJogada(e, 'impossivel', aleatorio)
                 : MI.jogadasLegais(e)[Math.floor(aleatorio() * MI.jogadasLegais(e).length)];
             e = MI.jogar(e, p);
         }
@@ -149,6 +170,19 @@ test('infinito: difícil (como O) nunca perde para jogadas aleatórias que não 
     }
     assert.equal(derrotas, 0);
     assert.ok(vitorias >= 35, 'vitórias: ' + vitorias);
+});
+
+test('infinito: difícil (como X) às vezes perde para quem joga perfeitamente', () => {
+    const aleatorio = rng(17);
+    let derrotas = 0;
+    for (let partida = 0; partida < 60; partida++) {
+        let e = MI.novoEstado();
+        for (let k = 0; k < 80 && !e.vencedor; k++) {
+            e = MI.jogar(e, BI.escolherJogada(e, e.vez === 'X' ? 'dificil' : 'impossivel', aleatorio));
+        }
+        if (e.vencedor === 'O') derrotas++;
+    }
+    assert.ok(derrotas >= 3, 'derrotas: ' + derrotas);
 });
 
 // ---------------------------------------------------------------- 9x9

@@ -9,7 +9,7 @@ const Controle = (() => {
     const jogadorO = document.querySelector('.jogadorD');
     const ouvintes = [];
 
-    const NIVEIS = ['facil', 'medio', 'dificil'];
+    const NIVEIS = ['facil', 'medio', 'dificil', 'impossivel'];
     const oponenteSalvo = ler('oponente');
     const ladoSalvo = ler('ladoHumano');
     if (oponenteSalvo && (oponenteSalvo === 'humano' || NIVEIS.includes(oponenteSalvo))) {

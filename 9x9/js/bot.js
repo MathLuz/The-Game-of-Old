@@ -11,6 +11,7 @@
         facil: { simulacoes: 300, tempoMs: 300 },
         medio: { simulacoes: 4000, tempoMs: 900 },
         dificil: { simulacoes: Infinity, tempoMs: 2000 },
+        impossivel: { simulacoes: Infinity, tempoMs: 5000 },
     };
     const EXPLORACAO = Math.SQRT2;
 

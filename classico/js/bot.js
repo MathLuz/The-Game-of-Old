@@ -1,5 +1,5 @@
 // Bot do clássico: minimax completo (o jogo é pequeno o bastante para o bot
-// enxergar todas as possibilidades). No difícil é imbatível.
+// enxergar todas as possibilidades). No impossível é imbatível.
 (function (raiz) {
     'use strict';
     const Motor = raiz.MotorClassico || require('./motor.js');
@@ -30,8 +30,14 @@
 
     const contarPecas = (tab) => tab.filter((c) => c !== '').length;
 
+    // Depois de `pos`, o adversário consegue vencer na jogada seguinte?
+    function entrega(e, pos) {
+        const n = Motor.jogar(e, pos);
+        return !n.vencedor && Motor.jogadasLegais(n).some((p) => Motor.jogar(n, p).vencedor === n.vez);
+    }
+
     function avaliar(e) {
-        return Motor.jogadasLegais(e).map((pos) => ({ pos, valor: valorDaJogada(e, pos) }));
+        return Motor.jogadasLegais(e).map((pos) => ({ pos, valor: valorDaJogada(e, pos), entrega: entrega(e, pos) }));
     }
 
     function escolherJogada(e, nivel, aleatorio = Math.random) {

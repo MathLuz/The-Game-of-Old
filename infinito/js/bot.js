@@ -2,7 +2,7 @@
 // Como cada jogador tem no máximo 3 peças, existem poucas posições possíveis
 // (algumas dezenas de milhares). O bot gera todas elas uma vez e descobre, de
 // trás pra frente, quais são vitória, derrota ou empate infinito (ninguém
-// consegue forçar a vitória). Com isso o difícil joga perfeitamente.
+// consegue forçar a vitória). Com isso o impossível joga perfeitamente.
 (function (raiz) {
     'use strict';
     const Motor = raiz.MotorInfinito || require('./motor.js');
@@ -161,9 +161,19 @@
         return Math.round((100 * armadilhas) / respostas.length);
     }
 
-    function avaliar(e) {
-        return Motor.jogadasLegais(e).map((pos) => ({ pos, valor: valorDaJogada(e, pos) }));
+    // Depois de `pos`, o adversário consegue vencer na jogada seguinte?
+    function entrega(e, pos) {
+        const n = Motor.jogar(e, pos);
+        return !n.vencedor && Motor.jogadasLegais(n).some((p) => Motor.jogar(n, p).vencedor === n.vez);
     }
+
+    function avaliar(e) {
+        return Motor.jogadasLegais(e).map((pos) => ({ pos, valor: valorDaJogada(e, pos), entrega: entrega(e, pos) }));
+    }
+
+    // As partidas do infinito são longas (o bot joga muitas vezes), então o
+    // difícil erra menos por jogada que no clássico para não ficar fácil demais.
+    const CHANCE_ERRO = { ...Niveis.CHANCE_ERRO, dificil: 0.1 };
 
     function escolherJogada(e, nivel, aleatorio = Math.random) {
         const legais = Motor.jogadasLegais(e);
@@ -173,7 +183,7 @@
         const avaliadas = nivel === 'facil'
             ? legais.map((pos) => ({ pos, valor: 0 }))
             : avaliar(e);
-        return Niveis.escolherPorNivel(avaliadas, vitoria, nivel, aleatorio);
+        return Niveis.escolherPorNivel(avaliadas, vitoria, nivel, aleatorio, CHANCE_ERRO);
     }
 
     // Resultado da posição para quem tem a vez: 'vitoria' | 'derrota' | 'empate'
