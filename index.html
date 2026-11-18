@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Matheus Luz">
     <title>The Game of Old</title>
-    <link href="/assets/img/iconjv.png" rel="icon">
+    <link href="assets/img/iconjv.png" rel="icon">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
     <meta name="theme-color" content="#222222">
@@ -19,56 +19,100 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="componentes.css">
     <script src="js/temas.js" defer></script>
+    <script src="js/menu.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Jogos da Velha</h1>
+        <div class="marca">
+            <!-- Logo em CSS (mesma ideia do ícone, mas segue as cores do tema) -->
+            <div class="logo" aria-hidden="true">
+                <span class="x">X</span><span class="o">O</span><span class="o">O</span><span class="x">X</span>
+            </div>
+            <h1>The Game of Old</h1>
+        </div>
+        <p class="subtitulo">O jogo da velha em outro nível</p>
+
+        <div class="config">
+            <button class="btn-config" type="button" aria-label="Aparência" aria-expanded="false"
+                aria-controls="painelConfig">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <div class="painel-config" id="painelConfig" hidden>
+                <span class="painel-titulo">Tema</span>
+                <div class="opcoes-tema" role="group" aria-label="Tema">
+                    <button type="button" data-tema="dark"><i class="fa-solid fa-moon"></i> Dark</button>
+                    <button type="button" data-tema="light"><i class="fa-solid fa-sun"></i> Light</button>
+                </div>
+                <span class="painel-titulo">Cores</span>
+                <div class="opcoes-cores" role="group" aria-label="Cores"></div>
+
+                <!-- Selects originais: temas.js continua lendo/salvando por eles -->
+                <select id="opcoesTemas" hidden>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+                <select id="opcoesCores" hidden>
+                    <option value="laraCian" selected>Laranja / Ciano</option>
+                    <option value="verdRoxo">Verde / Roxo</option>
+                    <option value="vermVerd">Vermelho / Verde</option>
+                    <option value="rosaAzul">Rosa / Azul</option>
+                </select>
+            </div>
+        </div>
     </header>
 
     <main>
-        <div class="jogos">
-            <a class="game-card" href="the-game-of-old/">
-                <div class="card-info">
-                    <h2>The Game of Old</h2>
-                    <p>Jogo da velha 9x9 1v1 ou contra o bot</p>
-                </div>
-            </a>
+        <a class="game-card destaque" href="the-game-of-old/">
+            <!-- Mini-tabuleiros: desenhados por js/menu.js a partir do data-casas -->
+            <div class="mini mini-9x9" aria-hidden="true"></div>
+            <div class="card-info">
+                <span class="kicker">Modo principal</span>
+                <h2>The Game of Old</h2>
+                <p>9 tabuleiros em um: onde você joga decide onde o rival joga.</p>
+                <ul class="tags">
+                    <li class="tag-destaque">9x9</li>
+                    <li>1v1</li>
+                    <li>vs Bot</li>
+                </ul>
+                <span class="btn-jogar"><i class="fa-solid fa-play"></i> Jogar</span>
+            </div>
+        </a>
+
+        <div class="outros">
             <a class="game-card" href="classico/">
+                <div class="mini mini-3x3" data-casas="XO..XO..X" data-vitoria="0,4,8" aria-hidden="true"></div>
                 <div class="card-info">
                     <h2>Clássico</h2>
-                    <p>O Jogo da velha clássico 3x3 1v1 ou contra o bot</p>
+                    <p>O jogo da velha de sempre.</p>
+                    <ul class="tags">
+                        <li class="tag-destaque">3x3</li>
+                        <li>1v1</li>
+                        <li>vs Bot</li>
+                    </ul>
                 </div>
             </a>
             <a class="game-card" href="infinito/">
+                <div class="mini mini-3x3" data-casas="XO.OX.OX." data-sumindo="0" aria-hidden="true"></div>
                 <div class="card-info">
                     <h2>Infinito</h2>
-                    <p>O Jogo da velha infinito 3x3 1v1 ou contra o bot</p>
+                    <p>Só 3 peças cada: a mais antiga some.</p>
+                    <ul class="tags">
+                        <li class="tag-destaque">3x3</li>
+                        <li>Sem empate</li>
+                        <li>vs Bot</li>
+                    </ul>
                 </div>
             </a>
         </div>
-        <aside class="temas">
-            <select id="opcoesTemas">
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-            </select>
-            <select id="opcoesCores">
-                <option value="laraCian" selected>Laranja / Ciano</option>
-                <option value="verdRoxo">Verde / Roxo</option>
-                <option value="vermVerd">Vermelho / Verde</option>
-                <option value="rosaAzul">Rosa / Azul</option>
-            </select>
-            <!-- <div class="marcacoesCheck">
-                <input type="checkbox" id="marcacoes">
-                <label>Marcações</label>
-                <i class="fa-solid fa-check"></i>
-            </div> -->
-        </aside>
     </main>
 
     <footer>
-        <a class="assi" href="https://github.com/Mathluz" target="_blank">Github/MathLuz</a>
+        <a class="assi" href="https://github.com/Mathluz" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github"></i> MathLuz
+        </a>
     </footer>
 </body>
 

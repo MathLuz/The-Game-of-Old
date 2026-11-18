@@ -1,0 +1,110 @@
+/* Componentes compartilhados por todas as páginas (menu e os 3 jogos):
+   o mesmo visual dos cards do menu, com borda cinza, cantos arredondados e
+   brilho na cor do X ao passar o mouse.
+   Cada página carrega este arquivo DEPOIS do seu style.css, então aqui só
+   entra o que é visual: tamanhos e posições continuam em cada style.css. */
+
+:root {
+    --borda: #7f7f7f7f;
+}
+
+/* --- Selects (tema, cores, oponente, lado) ------------------------------- */
+.temas select,
+.infos .config-jogo select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-color: var(--borda);
+    /* Seta desenhada com dois triângulos na cor do texto (segue o tema) */
+    background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 13px) 50%;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 34px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.temas select option,
+.infos .config-jogo select option {
+    background-color: var(--background);
+    color: var(--color);
+}
+
+/* --- Botões ---------------------------------------------------------------- */
+.btn-voltar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: var(--bRadius);
+}
+
+.btn-reset {
+    color: var(--color);
+    border-color: var(--borda);
+}
+
+.btn-reset i {
+    transition: transform 0.4s;
+}
+
+.btn-reset:hover i {
+    transform: rotate(180deg);
+}
+
+/* --- Brilho ao passar o mouse / navegar pelo teclado ------------------------ */
+.btn-voltar,
+.btn-reset,
+.temas .marcacoesCheck {
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.temas select:hover,
+.temas select:focus-visible,
+.infos .config-jogo select:hover,
+.infos .config-jogo select:focus-visible,
+.btn-voltar:hover,
+.btn-voltar:focus-visible,
+.btn-reset:hover,
+.btn-reset:focus-visible,
+.btn-config:hover,
+.btn-config:focus-visible,
+.temas .marcacoesCheck:hover,
+.temas .marcacoesCheck:focus-within {
+    border-color: var(--corX);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--corX) 30%, transparent);
+}
+
+/* --- Rodapé discreto -------------------------------------------------------- */
+footer .assi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    height: 45px;
+    font-size: 18px;
+    color: var(--color);
+    background-color: transparent;
+    opacity: 0.55;
+    overflow: visible;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+footer .assi::before {
+    content: none;
+}
+
+footer .assi:hover {
+    filter: none;
+    opacity: 1;
+    color: var(--corX);
+}

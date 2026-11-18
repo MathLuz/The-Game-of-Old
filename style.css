@@ -7,6 +7,8 @@
     --corO: #0ff;
     --neutra: #5f00bd;
     --gradient: #040007;
+    --corBlock: #0000007f;
+    --borda: #7f7f7f7f;
     --bRadius: 15px;
 }
 
@@ -25,11 +27,7 @@ html {
     background-color: var(--background);
     color: var(--color);
     font-family: 'Acme', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -38,54 +36,187 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: 100%;
+    gap: 28px;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 /* HEADER */
 header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 6px;
     width: 100%;
-    height: 150px;
-    min-height: 100px;
-    gap: 8px;
+    padding-top: 40px;
+    position: relative;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 header h1 {
     font-size: 52px;
-    /* color: var(--corX); */
     text-shadow: 0px 0px 12px var(--corX);
     letter-spacing: 3px;
 }
 
-/* header p {
-    font-size: 20px;
-    color: var(--color);
+.subtitulo {
+    font-size: 19px;
     opacity: 0.6;
-} */
+    letter-spacing: 1px;
+}
+
+/* Logo: 2x2 com as linhas em cruz, igual ao ícone */
+.logo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    width: 52px;
+    aspect-ratio: 1 / 1;
+    background:
+        linear-gradient(var(--color), var(--color)) center / 3px 100% no-repeat,
+        linear-gradient(var(--color), var(--color)) center / 100% 3px no-repeat;
+    flex-shrink: 0;
+}
+
+.logo span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.x {
+    color: var(--corX);
+    text-shadow: 0px 0px 4px var(--corX);
+}
+
+.o {
+    color: var(--corO);
+    text-shadow: 0px 0px 4px var(--corO);
+}
+
+/* CONFIGURAÇÕES (engrenagem) */
+.config {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.btn-config {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+    font-family: inherit;
+    color: var(--color);
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: var(--bRadius);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-config i {
+    transition: transform 0.5s;
+}
+
+.btn-config[aria-expanded="true"] i {
+    transform: rotate(90deg);
+}
+
+.painel-config {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 240px;
+    padding: 16px;
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: var(--bRadius);
+    box-shadow: 0 12px 30px #00000066;
+    animation: surgir 0.2s ease-out;
+}
+
+.painel-config[hidden] {
+    display: none;
+}
+
+.painel-titulo {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.opcoes-tema {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.opcoes-cores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.opcoes-tema button,
+.opcoes-cores button {
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--color);
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.opcoes-cores button {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.opcoes-tema button[aria-pressed="true"],
+.opcoes-cores button[aria-pressed="true"] {
+    border-color: var(--color);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color) 25%, transparent);
+}
+
+.opcoes-tema button:hover,
+.opcoes-cores button:hover {
+    border-color: var(--corX);
+}
 
 /* MAIN */
 main {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 1100px;
+    width: calc(100% - 32px);
+    max-width: 720px;
     user-select: none;
 }
 
-.jogos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    /* width: 100%; */
+.outros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
 }
 
 /* CARDS */
@@ -93,39 +224,36 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 18px;
-    width: 260px;
-    padding: 30px;
+    gap: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 28px 24px;
     background-color: var(--background);
-    /* border: 1px solid color-mix(in srgb, var(--color) 30%, #00000000 70%); */
-    border: 2px solid #7f7f7f7f;
+    border: 2px solid var(--borda);
     border-radius: var(--bRadius);
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     position: relative;
 }
 
-.game-card:hover {
+.game-card:hover,
+.game-card:focus-visible {
     border-color: var(--corX);
-    box-shadow: 0 0 20px var(--corX)44, 0 0 40px var(--corX)22;
+    box-shadow: 0 0 20px color-mix(in srgb, var(--corX) 27%, transparent),
+        0 0 40px color-mix(in srgb, var(--corX) 13%, transparent);
     transform: translateY(-4px);
 }
 
-/* .game-card.em-breve {
-    opacity: 0.45;
-    pointer-events: none;
-    cursor: default;
-} */
-
-
 .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
 .card-info h2 {
-    font-size: 26px;
-    margin-bottom: 8px;
+    font-size: 28px;
+    margin-bottom: 6px;
 }
 
 .card-info p {
@@ -133,110 +261,94 @@ main {
     opacity: 0.6;
 }
 
-/* BADGES */
-/* .badge {
-    font-size: 13px;
-    padding: 5px 16px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+/* Card principal (9x9): tabuleiro ao lado do texto */
+.game-card.destaque {
+    flex-direction: row;
+    justify-content: center;
+    gap: 36px;
+    padding: 36px;
+    border-color: color-mix(in srgb, var(--corX) 60%, transparent);
 }
 
-.badge.disponivel {
-    background-color: var(--background);
-    border: 2px solid var(--corO);
+.game-card.destaque .card-info {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.game-card.destaque .card-info h2 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    text-shadow: 0px 0px 10px var(--corX);
+}
+
+.game-card.destaque .card-info p {
+    font-size: 18px;
+    max-width: 280px;
+}
+
+.kicker {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--corO);
     text-shadow: 0px 0px 4px var(--corO);
+    margin-bottom: 4px;
 }
 
-.badge.em-breve-badge {
-    background-color: var(--background);
-    border: 2px solid #7f7f7f7f;
-    color: #7f7f7f;
-} */
-
-/* TEMAS */
-.temas {
+/* TAGS */
+.tags {
     display: flex;
-    flex-direction: column;
-    align-items: end;
-}
-
-.temas select {
-    color: var(--color);
-    border-radius: var(--bRadius);
-    font-family: 'Acme', sans-serif;
-}
-
-.temas .marcacoesCheck {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    gap: 5px;
-    border-radius: var(--bRadius);
-    position: relative;
-}
-
-.temas .marcacoesCheck input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: var(--bRadius);
-    opacity: 0;
-}
-
-.temas .marcacoesCheck i {
-    color: var(--color);
-}
-
-.temas select,
-.temas .marcacoesCheck {
-    background-color: var(--background);
-    border: 2px solid #7f7f7f7f;
-    margin: 20px 0px;
-    padding: 10px;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.temas .marcacoesCheck label {
-    cursor: pointer;
-}
-
-/* FOOTER */
-footer {
+    flex-wrap: wrap;
     justify-content: center;
-    height: 90px;
-    margin-top: 10px;
+    gap: 6px;
+    margin-top: 14px;
 }
 
-footer .assi {
-    display: flex;
-    justify-content: center;
+.game-card.destaque .tags {
+    justify-content: flex-start;
+}
+
+.tags li {
+    font-size: 14px;
+    padding: 3px 12px;
+    border: 1.5px solid var(--borda);
+    border-radius: 20px;
+    opacity: 0.85;
+}
+
+.tags .tag-destaque {
+    border-color: var(--corO);
+    color: var(--corO);
+    opacity: 1;
+}
+
+/* BOTÃO JOGAR (com o mesmo brilho que passava no botão do GitHub) */
+.btn-jogar {
+    display: inline-flex;
     align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 10px 30px;
+    font-size: 21px;
     color: #fff;
-    font-size: 25px;
-    height: 45px;
-    width: 200px;
-    border-radius: var(--bRadius);
     background-color: var(--neutra);
-    transition: 0.2s;
+    border-radius: var(--bRadius);
     position: relative;
     overflow: hidden;
+    transition: filter 0.2s;
 }
 
-footer .assi:hover {
-    filter: brightness(1.4);
+.btn-jogar i {
+    font-size: 15px;
 }
 
-footer .assi::before {
+.game-card:hover .btn-jogar {
+    filter: brightness(1.3);
+}
+
+.btn-jogar::before {
     position: absolute;
     content: '';
-    display: inline-block;
     top: -180px;
     left: 0;
     width: 30px;
@@ -267,22 +379,220 @@ footer .assi::before {
     }
 }
 
+/* MINI-TABULEIROS (mesmo desenho dos jogos: linhas na cor do tema) */
+.mini {
+    --tam: 96px;
+    width: var(--tam);
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--color);
+}
+
+.mini-3x3 {
+    gap: 3px;
+}
+
+.mini-9x9 {
+    --tam: 230px;
+    gap: 2px;
+}
+
+.mini .casa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    font-size: calc(var(--tam) / 4);
+    line-height: 1;
+}
+
+.mini .casa.vitoria {
+    text-shadow: 0px 0px 10px currentColor;
+}
+
+/* Peça que vai sumir no Infinito: só a peça fica translúcida, não a casa */
+.mini .casa.sumindo.x {
+    color: color-mix(in srgb, var(--corX) 35%, transparent);
+    text-shadow: none;
+}
+
+.mini .casa.sumindo.o {
+    color: color-mix(in srgb, var(--corO) 35%, transparent);
+    text-shadow: none;
+}
+
+/* Campo do 9x9: margem na cor do fundo + grade 3x3 por dentro */
+.mini .campo {
+    background-color: var(--background);
+    padding: 9%;
+    position: relative;
+}
+
+.mini .campo .grade {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color);
+}
+
+.mini .campo .casa {
+    font-size: calc(var(--tam) / 16);
+}
+
+/* Campo bloqueado: escurecido, igual no jogo */
+.mini .campo .bloqueio {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--corBlock);
+    border-radius: 6px;
+    font-size: calc(var(--tam) / 5);
+    line-height: 1;
+    text-shadow: 0px 0px 8px currentColor;
+}
+
+/* FOOTER (o visual do link fica em componentes.css) */
+footer {
+    padding-bottom: 12px;
+}
+
+/* ENTRADA ANIMADA */
+@keyframes surgir {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header .marca,
+header .subtitulo,
+main .game-card,
+footer {
+    animation: surgir 0.6s ease-out backwards;
+}
+
+header .subtitulo {
+    animation-delay: 0.08s;
+}
+
+main .destaque {
+    animation-delay: 0.16s;
+}
+
+.outros .game-card:nth-child(1) {
+    animation-delay: 0.28s;
+}
+
+.outros .game-card:nth-child(2) {
+    animation-delay: 0.36s;
+}
+
+footer {
+    animation-delay: 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 @media screen and (max-width: 940px) {
     body {
         background: radial-gradient(ellipse 160% 70% at center, var(--background) 60%, var(--gradient));
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
+    header {
+        padding-top: 76px;
+    }
+
     header h1 {
-        font-size: 38px;
+        font-size: 34px;
+        letter-spacing: 2px;
     }
 
-    main {
-        gap: 30px;
+    .marca {
+        gap: 12px;
     }
 
-    .game-card {
-        width: 85%;
+    .logo {
+        width: 38px;
+    }
+
+    .logo span {
+        font-size: 16px;
+    }
+
+    .subtitulo {
+        font-size: 16px;
+    }
+
+    .config {
+        top: 16px;
+        right: 16px;
+    }
+
+    .game-card.destaque {
+        flex-direction: column;
+        gap: 22px;
+        padding: 28px 20px;
+    }
+
+    .game-card.destaque .card-info {
+        align-items: center;
+        text-align: center;
+    }
+
+    .game-card.destaque .tags {
+        justify-content: center;
+    }
+
+    .game-card.destaque .card-info h2 {
+        font-size: 34px;
+    }
+
+    .mini-9x9 {
+        --tam: 200px;
+    }
+
+    .outros {
+        grid-template-columns: 1fr;
+    }
+
+    /* No celular os cards menores ficam em linha: tabuleiro + texto */
+    .outros .game-card {
+        flex-direction: row;
+        gap: 18px;
+        padding: 18px;
+    }
+
+    .outros .card-info {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .outros .tags {
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    .outros .mini {
+        --tam: 80px;
     }
 }
