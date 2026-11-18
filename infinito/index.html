@@ -17,10 +17,12 @@
     <script src="../js/pwa.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="../pagina-jogo.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="../componentes.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <script src="../js/temas.js" defer></script>
+    <script src="../js/config.js" defer></script>
     <script src="js/cores.js" defer></script>
     <script src="../js/controle.js" defer></script>
     <script src="js/motor.js" defer></script>
@@ -31,16 +33,56 @@
 
 <body>
     <header>
-        <a href="../" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="../" class="btn-voltar" aria-label="Voltar ao menu"><i class="fa-solid fa-arrow-left"></i></a>
         <h1>Infinito</h1>
-    </header>
-    <main>
+        <div class="config">
+            <button class="btn-config" type="button" aria-label="Aparência" aria-expanded="false"
+                aria-controls="painelConfig">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <div class="painel-config" id="painelConfig" hidden>
+                <span class="painel-titulo">Tema</span>
+                <div class="opcoes-tema" role="group" aria-label="Tema">
+                    <button type="button" data-tema="dark"><i class="fa-solid fa-moon"></i> Dark</button>
+                    <button type="button" data-tema="light"><i class="fa-solid fa-sun"></i> Light</button>
+                </div>
+                <span class="painel-titulo">Cores</span>
+                <div class="opcoes-cores" role="group" aria-label="Cores"></div>
 
-        <aside class="infos">
-            <div class="jogadores">
-                <div class="jogadorU">Jogador 1 - <span>X</span></div>
-                <div class="jogadorD">Jogador 2 - <span>O</span></div>
+                <!-- Selects originais: temas.js continua lendo/salvando por eles -->
+                <select id="opcoesTemas" hidden>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+                <select id="opcoesCores" hidden>
+                    <option value="laraCian" selected>Laranja / Ciano</option>
+                    <option value="verdRoxo">Verde / Roxo</option>
+                    <option value="vermVerd">Vermelho / Verde</option>
+                    <option value="rosaAzul">Rosa / Azul</option>
+                </select>
             </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="jogadores">
+            <div class="jogadorU">Jogador 1 - <span>X</span></div>
+            <div class="jogadorD">Jogador 2 - <span>O</span></div>
+        </div>
+
+        <div class="boxgame">
+            <div class="celula" onclick="jogada(this)" data-pos="0"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="1"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="2"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="3"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="4"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="5"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="6"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="7"></div>
+            <div class="celula" onclick="jogada(this)" data-pos="8"></div>
+        </div>
+
+        <div class="controles">
             <div class="config-jogo">
                 <select id="oponente" title="Oponente">
                     <option value="humano">2 jogadores</option>
@@ -53,33 +95,10 @@
                     <option value="O">Você joga de O</option>
                 </select>
             </div>
-        </aside>
-
-        <div class="boxgame">
-            <button class="btn-reset" onclick="reiniciar()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
-            <div class="celula" onclick="jogada(this)" data-pos="0"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="1"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="2"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="3"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="4"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="5"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="6"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="7"></div>
-            <div class="celula" onclick="jogada(this)" data-pos="8"></div>
+            <button class="btn-reset" type="button" onclick="reiniciar()">
+                <i class="fa-solid fa-arrow-rotate-right"></i> Reiniciar partida
+            </button>
         </div>
-
-        <aside class="temas">
-            <select id="opcoesTemas">
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-            </select>
-            <select id="opcoesCores">
-                <option value="laraCian" selected>Laranja / Ciano</option>
-                <option value="verdRoxo">Verde / Roxo</option>
-                <option value="vermVerd">Vermelho / Verde</option>
-                <option value="rosaAzul">Rosa / Azul</option>
-            </select>
-        </aside>
     </main>
 
     <footer>

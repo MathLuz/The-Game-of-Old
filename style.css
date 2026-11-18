@@ -101,104 +101,11 @@ header h1 {
     text-shadow: 0px 0px 4px var(--corO);
 }
 
-/* CONFIGURAÇÕES (engrenagem) */
-.config {
+/* CONFIGURAÇÕES: a engrenagem fica no canto (visual em componentes.css) */
+header .config {
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 10;
-}
-
-.btn-config {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    font-size: 20px;
-    font-family: inherit;
-    color: var(--color);
-    background-color: var(--background);
-    border: 2px solid var(--borda);
-    border-radius: var(--bRadius);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-config i {
-    transition: transform 0.5s;
-}
-
-.btn-config[aria-expanded="true"] i {
-    transform: rotate(90deg);
-}
-
-.painel-config {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 240px;
-    padding: 16px;
-    background-color: var(--background);
-    border: 2px solid var(--borda);
-    border-radius: var(--bRadius);
-    box-shadow: 0 12px 30px #00000066;
-    animation: surgir 0.2s ease-out;
-}
-
-.painel-config[hidden] {
-    display: none;
-}
-
-.painel-titulo {
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    opacity: 0.6;
-}
-
-.opcoes-tema {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.opcoes-cores {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.opcoes-tema button,
-.opcoes-cores button {
-    font-family: inherit;
-    font-size: 16px;
-    color: var(--color);
-    background-color: var(--background);
-    border: 2px solid var(--borda);
-    border-radius: 10px;
-    padding: 8px 0;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.opcoes-cores button {
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-.opcoes-tema button[aria-pressed="true"],
-.opcoes-cores button[aria-pressed="true"] {
-    border-color: var(--color);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--color) 25%, transparent);
-}
-
-.opcoes-tema button:hover,
-.opcoes-cores button:hover {
-    border-color: var(--corX);
 }
 
 /* MAIN */
@@ -543,7 +450,7 @@ footer {
         font-size: 16px;
     }
 
-    .config {
+    header .config {
         top: 16px;
         right: 16px;
     }

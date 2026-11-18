@@ -1,19 +1,22 @@
 /* Componentes compartilhados por todas as páginas (menu e os 3 jogos):
    o mesmo visual dos cards do menu, com borda cinza, cantos arredondados e
    brilho na cor do X ao passar o mouse.
-   Cada página carrega este arquivo DEPOIS do seu style.css, então aqui só
-   entra o que é visual: tamanhos e posições continuam em cada style.css. */
+   Cada página carrega este arquivo DEPOIS do seu style.css. */
 
 :root {
     --borda: #7f7f7f7f;
 }
 
-/* --- Selects (tema, cores, oponente, lado) ------------------------------- */
-.temas select,
-.infos .config-jogo select {
+/* --- Selects (oponente, lado) ----------------------------------------------- */
+.config-jogo select {
     -webkit-appearance: none;
     appearance: none;
-    border-color: var(--borda);
+    color: var(--color);
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: var(--bRadius);
+    font-family: 'Acme', sans-serif;
+    cursor: pointer;
     /* Seta desenhada com dois triângulos na cor do texto (segue o tema) */
     background-image:
         linear-gradient(45deg, transparent 50%, currentColor 50%),
@@ -24,17 +27,20 @@
     background-size: 5px 5px;
     background-repeat: no-repeat;
     padding-right: 34px;
-    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.temas select option,
-.infos .config-jogo select option {
+.config-jogo select option {
     background-color: var(--background);
     color: var(--color);
 }
 
-/* --- Botões ---------------------------------------------------------------- */
-.btn-voltar {
+.config-jogo select[hidden] {
+    display: none;
+}
+
+/* --- Botões quadrados com ícone (voltar, engrenagem) -------------------------- */
+.btn-voltar,
+.btn-config {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,14 +48,21 @@
     width: 46px;
     height: 46px;
     font-size: 20px;
+    font-family: inherit;
+    color: var(--color);
     background-color: var(--background);
     border: 2px solid var(--borda);
     border-radius: var(--bRadius);
+    cursor: pointer;
 }
 
 .btn-reset {
     color: var(--color);
-    border-color: var(--borda);
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: var(--bRadius);
+    font-family: inherit;
+    cursor: pointer;
 }
 
 .btn-reset i {
@@ -61,26 +74,166 @@
 }
 
 /* --- Brilho ao passar o mouse / navegar pelo teclado ------------------------ */
+.config-jogo select,
 .btn-voltar,
-.btn-reset,
-.temas .marcacoesCheck {
+.btn-config,
+.btn-reset {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.temas select:hover,
-.temas select:focus-visible,
-.infos .config-jogo select:hover,
-.infos .config-jogo select:focus-visible,
+.config-jogo select:hover,
+.config-jogo select:focus-visible,
 .btn-voltar:hover,
 .btn-voltar:focus-visible,
 .btn-reset:hover,
 .btn-reset:focus-visible,
 .btn-config:hover,
-.btn-config:focus-visible,
-.temas .marcacoesCheck:hover,
-.temas .marcacoesCheck:focus-within {
+.btn-config:focus-visible {
     border-color: var(--corX);
     box-shadow: 0 0 14px color-mix(in srgb, var(--corX) 30%, transparent);
+}
+
+/* --- Painel de aparência (engrenagem) --------------------------------------- */
+.config {
+    position: relative;
+    z-index: 30;
+}
+
+.btn-config i {
+    transition: transform 0.5s;
+}
+
+.btn-config[aria-expanded="true"] i {
+    transform: rotate(90deg);
+}
+
+.painel-config {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 240px;
+    padding: 16px;
+    font-family: 'Acme', sans-serif;
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: var(--bRadius);
+    box-shadow: 0 12px 30px #00000066;
+    animation: painel-surgir 0.2s ease-out;
+}
+
+.painel-config[hidden] {
+    display: none;
+}
+
+@keyframes painel-surgir {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.painel-titulo {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.opcoes-tema {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.opcoes-cores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.opcoes-tema button,
+.opcoes-cores button {
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--color);
+    background-color: var(--background);
+    border: 2px solid var(--borda);
+    border-radius: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.opcoes-cores button {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.opcoes-tema button[aria-pressed="true"],
+.opcoes-cores button[aria-pressed="true"] {
+    border-color: var(--color);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color) 25%, transparent);
+}
+
+.opcoes-tema button:hover,
+.opcoes-cores button:hover {
+    border-color: var(--corX);
+}
+
+/* Interruptor (ex.: Marcações no 9x9) */
+.opcao-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.opcao-switch input {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background-color: var(--borda);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.opcao-switch input::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--color);
+    transition: transform 0.2s;
+}
+
+.opcao-switch input:checked {
+    background-color: var(--corX);
+}
+
+.opcao-switch input:checked::before {
+    transform: translateX(20px);
+    background-color: #fff;
+}
+
+.opcao-switch input:focus-visible {
+    box-shadow: 0 0 0 2px var(--corX);
 }
 
 /* --- Rodapé discreto -------------------------------------------------------- */
@@ -89,22 +242,14 @@ footer .assi {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: auto;
-    height: 45px;
+    height: 40px;
     font-size: 18px;
     color: var(--color);
-    background-color: transparent;
     opacity: 0.55;
-    overflow: visible;
     transition: opacity 0.2s, color 0.2s;
 }
 
-footer .assi::before {
-    content: none;
-}
-
 footer .assi:hover {
-    filter: none;
     opacity: 1;
     color: var(--corX);
 }

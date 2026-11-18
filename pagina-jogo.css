@@ -1,0 +1,244 @@
+/* Layout comum das páginas de jogo (9x9, Clássico e Infinito).
+   Cada jogo carrega este arquivo e depois o seu style.css, que só desenha o
+   tabuleiro e define --tMax (tamanho máximo dele).
+
+   Ordem na tela, numa coluna só (celular e computador):
+   [voltar]  Título  [engrenagem]
+   jogadores
+   tabuleiro
+   oponente / lado
+   Reiniciar        <- longe do tabuleiro, para não ser tocado sem querer */
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Jacquard+12+Charted&display=swap');
+
+:root {
+    /* Cores padrão (tema dark) até o temas.js carregar o cores.json:
+       evita o tabuleiro cinza / texto apagado no primeiro instante */
+    --background: #1f1f22;
+    --color: #fff;
+    --corX: #ff7f00;
+    --corO: #0ff;
+    --neutra: #5f00bd;
+    --gradient: #040007;
+    --corBlock: #0000007f;
+    --bRadius: 15px;
+
+    /* Altura ocupada por tudo que não é o tabuleiro (topo, jogadores, controles) */
+    --reservado: 290px;
+    /* Lado do tabuleiro: cabe na largura E na altura da tela, até o máximo do jogo */
+    --tam: clamp(240px, min(100vw - 32px, 100vh - var(--reservado)), var(--tMax, 520px));
+}
+
+@supports (height: 100dvh) {
+    :root {
+        /* dvh acompanha a barra do navegador do celular aparecendo/sumindo */
+        --tam: clamp(240px, min(100vw - 32px, 100dvh - var(--reservado)), var(--tMax, 520px));
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    background-color: var(--background);
+    color: var(--color);
+    font-family: 'Acme', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* O fundo cresce junto com a página: rolando, ele não "acaba" mais */
+body {
+    box-sizing: border-box;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 0 16px;
+    background: radial-gradient(ellipse 70% 150% at center, var(--background) 40%, var(--gradient));
+}
+
+/* --- TOPO ------------------------------------------------------------------- */
+header {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 46px 1fr 46px;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: max(var(--tam), 360px);
+    /* Respeita o entalhe/barra de status do celular */
+    padding-top: max(18px, env(safe-area-inset-top));
+    position: relative;
+    z-index: 30;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 10px var(--corX);
+}
+
+/* --- MEIO ------------------------------------------------------------------- */
+/* Ocupa a altura que sobra e distribui o espaço livre por igual: em tela
+   alta o tabuleiro fica no meio, em vez de colado nos jogadores */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 16px;
+    width: 100%;
+    max-width: max(var(--tam), 360px);
+    user-select: none;
+}
+
+/* Jogadores: o da vez ganha borda e fundo na cor da peça dele */
+.jogadores {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 22px;
+}
+
+.jogadores div {
+    padding: 5px 16px;
+    border: 2px solid transparent;
+    border-radius: var(--bRadius);
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.jogadores .jogadorU span {
+    color: var(--corX);
+    text-shadow: 0px 0px 4px var(--corX);
+}
+
+.jogadores .jogadorD span {
+    color: var(--corO);
+    text-shadow: 0px 0px 4px var(--corO);
+}
+
+.jogadores .jogadorU.vez {
+    border-color: color-mix(in srgb, var(--corX) 70%, transparent);
+    background-color: color-mix(in srgb, var(--corX) 12%, transparent);
+}
+
+.jogadores .jogadorD.vez {
+    border-color: color-mix(in srgb, var(--corO) 70%, transparent);
+    background-color: color-mix(in srgb, var(--corO) 12%, transparent);
+}
+
+/* Bot pensando: o nome dele pulsa */
+.jogadores .pensando {
+    animation: pensando 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes pensando {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.4;
+    }
+}
+
+/* --- CONTROLES (abaixo do tabuleiro) ----------------------------------------- */
+.controles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.config-jogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.config-jogo select {
+    font-size: 17px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 14px;
+}
+
+.btn-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    padding: 8px 20px;
+}
+
+/* --- RODAPÉ ----------------------------------------------------------------- */
+footer {
+    margin-top: auto;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+}
+
+/* --- SweetAlert2 (alerta de fim de jogo) ------------------------------------ */
+.swal2-show {
+    font-size: 30px;
+}
+
+/* O SweetAlert troca a altura do body enquanto está aberto; mantém o fundo inteiro */
+.swal2-height-auto {
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+}
+
+.swal2-html-container {
+    color: var(--color) !important;
+}
+
+/* --- CELULAR ---------------------------------------------------------------- */
+@media screen and (max-width: 940px) {
+    body {
+        background: radial-gradient(ellipse 160% 70% at center, var(--background) 60%, var(--gradient));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --reservado: 270px;
+    }
+
+    body {
+        gap: 12px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    main {
+        gap: 14px;
+    }
+
+    .jogadores {
+        font-size: 19px;
+    }
+
+    .jogadores div {
+        padding: 4px 12px;
+    }
+
+    .config-jogo select {
+        font-size: 15px;
+    }
+}

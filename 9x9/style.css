@@ -1,0 +1,83 @@
+/* Tabuleiro do The Game of Old (9x9).
+   O resto da página (topo, jogadores, controles, rodapé) está em ../pagina-jogo.css,
+   que calcula --tam: o lado do tabuleiro, cabendo na tela até --tMax. */
+
+:root {
+  --tMax: 560px;
+}
+
+.boxgame {
+  /* As camadas internas (ex.: bloqueio com z-index 99) ficam presas aqui
+     dentro e nunca passam por cima do painel de configurações */
+  isolation: isolate;
+  width: var(--tam);
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+/* Campo (cada um dos 9 jogos da velha) */
+.boxgame div {
+  background-color: var(--background);
+  width: 33%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Grade 3x3 dentro do campo (as linhas são o fundo aparecendo entre as casas) */
+.boxgame .tabuleiro div {
+  background-color: var(--color);
+  width: 87%;
+  aspect-ratio: 1 / 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+/* Campo bloqueado / ganho: escurece e mostra o dono por cima */
+.boxgame .tabuleiro .modific {
+  display: none;
+  cursor: default;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: calc(var(--tam) / 3.4);
+  line-height: 1;
+  background-color: var(--corBlock);
+  border-radius: var(--bRadius);
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+}
+
+/* Casa */
+.boxgame .tabuleiro div div {
+  background-color: var(--background);
+  width: 32%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  /* A casa herda flex-wrap + align-content: space-between da grade; sem
+     desfazer isso a linha de texto gruda no topo e a letra fica alta */
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--tam) / 17);
+  line-height: 1;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+/* Última jogada feita */
+.boxgame .tabuleiro div div.ultima {
+  box-shadow: inset 0 0 0 3px #7f7f7f55;
+}

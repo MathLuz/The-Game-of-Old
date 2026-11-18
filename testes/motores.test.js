@@ -6,8 +6,8 @@ const MC = require('../classico/js/motor.js');
 const BC = require('../classico/js/bot.js');
 const MI = require('../infinito/js/motor.js');
 const BI = require('../infinito/js/bot.js');
-const MU = require('../the-game-of-old/js/motor.js');
-const BU = require('../the-game-of-old/js/bot.js');
+const MU = require('../9x9/js/motor.js');
+const BU = require('../9x9/js/bot.js');
 
 // Gerador aleatório com semente (para os testes serem repetíveis)
 function rng(semente) {

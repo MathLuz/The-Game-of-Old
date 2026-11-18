@@ -7,7 +7,6 @@ const Controle = (() => {
     const selLado = document.getElementById('ladoHumano');
     const jogadorX = document.querySelector('.jogadorU');
     const jogadorO = document.querySelector('.jogadorD');
-    const COR_VEZ = '#7f7f7f55';
     const ouvintes = [];
 
     const NIVEIS = ['facil', 'medio', 'dificil'];
@@ -59,9 +58,10 @@ const Controle = (() => {
         }
     }
 
+    // A classe .vez pinta a borda/fundo na cor da peça (pagina-jogo.css)
     function destacarVez(vez) {
-        jogadorX.style.backgroundColor = vez === 'X' ? COR_VEZ : '';
-        jogadorO.style.backgroundColor = vez === 'O' ? COR_VEZ : '';
+        jogadorX.classList.toggle('vez', vez === 'X');
+        jogadorO.classList.toggle('vez', vez === 'O');
     }
 
     function marcarPensando(simbolo, pensando) {

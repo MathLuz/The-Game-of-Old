@@ -1,4 +1,7 @@
 const root = document.documentElement;
+// cores.json fica na pasta do 9x9; o caminho sai da localização deste script,
+// então funciona igual no menu e dentro de qualquer jogo.
+const URL_CORES = new URL('../9x9/cores.json', document.currentScript.src);
 const selectTema = document.getElementById("opcoesTemas");
 const selectCores = document.getElementById("opcoesCores");
 const marcacoes = document.querySelector('#marcacoes');
@@ -48,13 +51,7 @@ function atualizarIcone() {
 
 async function aplicarTema() {
     try {
-        const pagePath = window.location.pathname;
-        const jsonPath = pagePath.includes('/the-game-of-old/')
-            ? 'cores.json'
-            : pagePath.includes('/classico/') || pagePath.includes('/infinito/')
-                ? '../the-game-of-old/cores.json'
-                : 'the-game-of-old/cores.json';
-        const res = await fetch(jsonPath);
+        const res = await fetch(URL_CORES);
         const data = await res.json();
 
         const tema = data.temas.find(t => t.nome === escolhaTema);

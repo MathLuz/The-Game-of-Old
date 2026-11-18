@@ -35,7 +35,7 @@
   "shortcuts": [
     {
       "name": "The Game of Old (9x9)",
-      "url": "./the-game-of-old/",
+      "url": "./9x9/",
       "icons": [{ "src": "assets/img/icons/icon-192.png", "sizes": "192x192" }]
     },
     {
